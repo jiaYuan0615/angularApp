@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -9,16 +10,11 @@ import { environment } from 'src/environments/environment';
 })
 export class ProfileComponent implements OnInit {
 
-  baseUrl = `${environment.protocol}://${environment.host}${environment.port ? `:${environment.port}` : ''}${environment.prefix}`;
 
-  constructor(private http: HttpClient) { }
-
-  ngOnInit(): void {
-    console.log('url', this.baseUrl);
-
+  constructor(private http: HttpClient, private route: ActivatedRoute) {
   }
 
-  loadData() {
-    // this.http.get(`${this.baseUrl}`)
+  ngOnInit(): void {
+    console.log('url', environment.router);
   }
 }
