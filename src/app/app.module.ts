@@ -21,7 +21,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { registerLocaleData } from '@angular/common';
 import zh from '@angular/common/locales/zh';
 import { LoadingComponent } from './loading/loading.component';
-import { AboutComponent } from '../../about/about.component';
+import { AboutComponent } from './about/about.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 
 registerLocaleData(zh);
