@@ -16,10 +16,13 @@ import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzResultModule } from 'ng-zorro-antd/result';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
+import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { registerLocaleData } from '@angular/common';
 import zh from '@angular/common/locales/zh';
 import { LoadingComponent } from './loading/loading.component';
+import { AboutComponent } from '../../about/about.component';
+import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 
 registerLocaleData(zh);
 
@@ -29,6 +32,7 @@ const ngZorroModule = [
   NzResultModule,
   NzButtonModule,
   NzSpinModule,
+  NzBreadCrumbModule,
 ]
 
 @NgModule({
@@ -39,7 +43,9 @@ const ngZorroModule = [
     HeaderComponent,
     FooterComponent,
     ArticleComponent,
-    LoadingComponent
+    LoadingComponent,
+    AboutComponent,
+    BreadcrumbComponent
   ],
   imports: [
     BrowserModule,

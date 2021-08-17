@@ -8,7 +8,7 @@ export class GlobalService {
 
   constructor(private router: Router) { }
 
-  goToRoute(path: any[]) {
-    this.router.navigate(path);
+  goToRoute(path: string) {
+    this.router.navigate(new Array(path));
   }
 }

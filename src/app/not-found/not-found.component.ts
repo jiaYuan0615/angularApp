@@ -15,7 +15,7 @@ export class NotFoundComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  goToRoute() {
-    this.globalService.goToRoute(['/'])
+  goToRoute(path: string) {
+    this.globalService.goToRoute(path)
   }
 }

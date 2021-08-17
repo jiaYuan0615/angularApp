@@ -1,0 +1,9 @@
+<nz-breadcrumb>
+  <ng-container *ngFor="let path of paths; let i = index">
+    <nz-breadcrumb-item>
+      <a (click)="goToRoute(path.route)">
+        {{ path.title }}
+      </a>
+    </nz-breadcrumb-item>
+  </ng-container>
+</nz-breadcrumb>

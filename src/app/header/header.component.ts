@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GlobalService } from '../service/global.service';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(private globalService: GlobalService) { }
 
   ngOnInit(): void {
   }
 
+
+  goToRoute(path?: string) {
+    this.globalService.goToRoute(path)
+  }
 }

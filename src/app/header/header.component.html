@@ -1,8 +1,7 @@
 <nz-header>
   <div class="logo"></div>
   <ul nz-menu nzTheme="dark" nzMode="horizontal">
-    <li nz-menu-item>nav 1</li>
-    <li nz-menu-item>nav 2</li>
-    <li nz-menu-item>nav 3</li>
+    <li nz-menu-item (click)="goToRoute('/')">所有文章</li>
+    <li nz-menu-item (click)="goToRoute('about')">關於我們</li>
   </ul>
 </nz-header>
