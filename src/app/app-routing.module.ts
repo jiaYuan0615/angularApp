@@ -1,19 +1,21 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AboutComponent } from './components/about/about.component';
-import { ArticleComponent } from './components/article/article.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
-import { ProfileComponent } from './components/profile/profile.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 import { GlobalComponent } from './layouts/global/global.component';
 import { LoginComponent } from './layouts/login/login.component';
+import { SoundComponent } from './pages/sound/sound.component';
+import { SingerComponent } from './pages/singer/singer.component';
+import { GroupComponent } from './pages/group/group.component';
 
 const routes: Routes = [
   {
     path: '',
     component: GlobalComponent,
     children: [
-      { path: '', component: ArticleComponent },
-      { path: 'about', component: AboutComponent },
+      { path: '', component: SoundComponent },
+      { path: 'singer', component: SingerComponent },
+      { path: 'group', component: GroupComponent },
       { path: 'profile', component: ProfileComponent },
     ]
   },
