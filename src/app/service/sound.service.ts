@@ -15,7 +15,15 @@ export class SoundService {
   constructor(private http: HttpClient, private token: TokenService) { }
 
   getSound() {
-    return this.http.get<Sounds>(`${environment.router}/sound`).pipe(map(x => x.sounds));
+    return this.http.get<Sounds>(`${environment.router}/sound`).pipe(
+      map(x => {
+        x.sounds.forEach(v => {
+          v.createdAt = new Date(v.createdAt);
+          v.updatedAt = new Date(v.createdAt)
+        });
+        return x
+      })
+    );
   }
 
   postSound(payload: Sound) {

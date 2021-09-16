@@ -10,6 +10,6 @@ export interface Sound {
   cover: string;
   ost: string;
   isCover: boolean;
-  createdAt: string;
-  updatedAt: string;
+  createdAt: string | Date;
+  updatedAt: string | Date;
 }

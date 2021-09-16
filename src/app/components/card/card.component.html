@@ -1,4 +1,12 @@
-<nz-card [nzTitle]="data.name">
-<p>歌手 {{data.cover}}</p>
-<p>發行年份 {{data.publishYear}}</p>
+<nz-card [nzTitle]="sound.name">
+  <p>歌手：{{sound.cover}}</p>
+  <p>發行年份：{{sound.publishYear}}</p>
+  <p>建立時間：{{sound.createdAt | date:'yyyy-MM-dd'}}</p>
+  <button
+    nz-button
+    nzType="primary"
+    (click)="soundHandler()"
+    >
+    {{sound.cover}}
+  </button>
 </nz-card>

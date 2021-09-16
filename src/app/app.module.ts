@@ -32,8 +32,6 @@ import { SingerComponent } from './pages/singer/singer.component';
 import { GroupComponent } from './pages/group/group.component';
 import { CardComponent } from './components/card/card.component';
 import { LoginFormComponent } from './components/form/login-form/login-form.component';
-import { RegisterFormComponent } from './components/form/register-form/register-form.component';
-import { ForgetFormComponent } from './components/form/forget-form/forget-form.component';
 
 registerLocaleData(zh);
 
@@ -67,8 +65,6 @@ const ngZorroModule = [
     GroupComponent,
     CardComponent,
     LoginFormComponent,
-    RegisterFormComponent,
-    ForgetFormComponent,
   ],
   imports: [
     BrowserModule,

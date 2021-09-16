@@ -1,7 +1,11 @@
 <ng-container  *ngIf="(sound$ | async) as sounds; else empty">
-  <app-card [data]="v" *ngFor="let v of sounds"></app-card>
+  <app-card
+  [sound]="v"
+  (clickEvent)="handler($event)"
+  *ngFor="let v of sounds">
+</app-card>
 </ng-container>
 
 <ng-template #empty>
-  目前尚無資料
+  <app-loading></app-loading>
 </ng-template>
