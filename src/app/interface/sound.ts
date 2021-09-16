@@ -5,6 +5,11 @@ export interface Sounds {
 export interface Sound {
   id: string;
   name: string;
-  createdAt: Date;
-  updatedAt: Date;
+  lyrics: string;
+  publishYear: string | Date;
+  cover: string;
+  ost: string;
+  isCover: boolean;
+  createdAt: string;
+  updatedAt: string;
 }

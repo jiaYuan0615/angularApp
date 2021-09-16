@@ -7,6 +7,9 @@ import { LoginComponent } from './layouts/login/login.component';
 import { SoundComponent } from './pages/sound/sound.component';
 import { SingerComponent } from './pages/singer/singer.component';
 import { GroupComponent } from './pages/group/group.component';
+import { LoginFormComponent } from './components/form/login-form/login-form.component';
+import { RegisterFormComponent } from './components/form/register-form/register-form.component';
+import { ForgetFormComponent } from './components/form/forget-form/forget-form.component';
 
 const routes: Routes = [
   {
@@ -20,8 +23,14 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'login',
+    path: 'user',
     component: LoginComponent,
+    children: [
+      { path: 'login', component: LoginFormComponent },
+      { path: 'register', component: RegisterFormComponent },
+      { path: 'forget', component: ForgetFormComponent },
+      { path: '**', redirectTo: 'login' }
+    ]
   },
   { path: '**', component: NotFoundComponent }
 ];

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { map } from 'rxjs/operators';
-import { Sound } from 'src/app/interface/sound';
+import { Sounds } from 'src/app/interface/sound';
 import { SoundService } from 'src/app/service/sound.service';
 
 @Component({
@@ -9,15 +8,17 @@ import { SoundService } from 'src/app/service/sound.service';
   styleUrls: ['./sound.component.less']
 })
 export class SoundComponent implements OnInit {
-
   constructor(private soundService: SoundService) { }
-  sound: Sound[]
-  sound$ = this.soundService.getSound().pipe(map(v => v.sounds));
+  // sounds: Sounds
+  sound$ = this.soundService.getSound();
 
   ngOnInit(): void {
-    this.soundService.getSound().subscribe({
-      next: v => this.sound = v.sounds
-    })
-  }
+    // const observer = {
+    //   next: v => this.sounds = v,
+    //   error: e => console.log(e),
+    //   complete: () => { }
 
+    // }
+    // this.soundService.getSound().subscribe(observer)
+  }
 }
