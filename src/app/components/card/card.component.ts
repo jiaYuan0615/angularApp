@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Sound } from 'src/app/interface/sound';
 
 @Component({
   selector: 'app-card',
@@ -8,11 +9,10 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class CardComponent implements OnInit {
 
   // 預設括號不填入參數則以定義的變數作為接收的參數
-  @Input() sound;
+  @Input() sound: Sound;
   @Output('clickEvent') click = new EventEmitter<any>();
 
   constructor() {
-
   }
 
   ngOnInit(): void {

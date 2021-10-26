@@ -1,9 +1,9 @@
-<ng-container  *ngIf="(sound$ | async) as sounds; else empty">
+<ng-container  *ngIf="sound$ | async as sounds; else empty">
   <app-card
-  [sound]="v"
-  (clickEvent)="handler($event)"
-  *ngFor="let v of sounds">
-</app-card>
+    *ngFor="let v of sounds"
+    [sound]="v"
+    (clickEvent)="handler($event)"
+  ></app-card>
 </ng-container>
 
 <ng-template #empty>

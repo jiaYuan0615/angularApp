@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { GlobalService } from 'src/app/service/global.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login-form',
@@ -8,15 +7,15 @@ import { GlobalService } from 'src/app/service/global.service';
   styleUrls: ['./login-form.component.less']
 })
 export class LoginFormComponent implements OnInit {
+  loginForm: FormGroup
 
-  loginForm = new FormGroup({
-    email: new FormControl("heroyuans@gmail.com"),
-    password: new FormControl("password")
-  })
-
-  constructor() { }
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
+    this.loginForm = this.fb.group({
+      email: ['heroyuans@gmail.com', [Validators.required]],
+      password: ['password', [Validators.required]]
+    })
   }
 
   submitForm() {
@@ -26,5 +25,6 @@ export class LoginFormComponent implements OnInit {
         this.loginForm.controls[i].updateValueAndValidity();
       }
     }
+
   }
 }

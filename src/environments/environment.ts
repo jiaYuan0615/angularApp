@@ -9,7 +9,7 @@ const prefix = '/api'
 
 export const environment = {
   production: false,
-  router: `${protocol}://${host}${port ? `:${port}` : ''}${prefix}`,
+  router: `${protocol}://${host}${port ? `:${port}` : ''}${prefix}/`,
   tokenName: 'token'
 };
 

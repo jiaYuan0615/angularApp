@@ -18,6 +18,7 @@ import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -32,6 +33,7 @@ import { SingerComponent } from './pages/singer/singer.component';
 import { GroupComponent } from './pages/group/group.component';
 import { CardComponent } from './components/card/card.component';
 import { LoginFormComponent } from './components/form/login-form/login-form.component';
+import { SingerCardComponent } from './components/singer-card/singer-card.component';
 
 registerLocaleData(zh);
 
@@ -46,6 +48,7 @@ const ngZorroModule = [
   NzBreadCrumbModule,
   NzInputModule,
   NzCardModule,
+  NzAvatarModule,
 ]
 
 @NgModule({
@@ -65,6 +68,7 @@ const ngZorroModule = [
     GroupComponent,
     CardComponent,
     LoginFormComponent,
+    SingerCardComponent,
   ],
   imports: [
     BrowserModule,

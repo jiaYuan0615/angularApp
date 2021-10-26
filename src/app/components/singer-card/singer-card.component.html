@@ -1,0 +1,14 @@
+<nz-card [nzTitle]="singer.name">
+  <nz-avatar [nzSize]="64" nzIcon="user" [nzSrc]="singer.avatar"></nz-avatar>
+  <p>歌手：{{singer.name}}</p>
+  <p>性別：{{singer.gender}}</p>
+  <p>出生年月日：{{singer.birth | date:'yyyy-MM-dd'}}</p>
+  <p>個人簡歷：{{singer.biography}}</p>
+  <button
+    nz-button
+    nzType="primary"
+    (click)="singerHandler()"
+  >
+  {{singer.nickname}}
+  </button>
+</nz-card>

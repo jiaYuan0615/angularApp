@@ -1,8 +1,8 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
-import { environment } from 'src/environments/environment';
 import { Sound, Sounds } from '../interface/sound';
+import { GlobalService } from './global.service';
 import { TokenService } from './token.service';
 
 @Injectable({
@@ -12,25 +12,30 @@ import { TokenService } from './token.service';
 
 export class SoundService {
 
-  constructor(private http: HttpClient, private token: TokenService) { }
+  constructor(
+    private token: TokenService,
+    private global: GlobalService
+  ) { }
 
   getSound() {
-    return this.http.get<Sounds>(`${environment.router}/sound`).pipe(
-      map(x => {
-        x.sounds.forEach(v => {
-          v.createdAt = new Date(v.createdAt);
-          v.updatedAt = new Date(v.createdAt)
-        });
-        return x
-      })
-    );
+    return this.global.get<Sounds>("sound")
+      .pipe(
+        map(x => {
+          x.sounds.forEach(v => {
+            v.createdAt = new Date(v.createdAt);
+            v.updatedAt = new Date(v.createdAt)
+          });
+          return x
+        })
+      );
   }
 
   postSound(payload: Sound) {
-    return this.http.post(`${environment.router}/sound`, payload, {
+    const options = {
       headers: new HttpHeaders({
         Authorization: `bearer ${this.token.getToken()}`,
       })
-    })
+    }
+    return this.global.post<Sound>("sound", payload, options);
   };
 }

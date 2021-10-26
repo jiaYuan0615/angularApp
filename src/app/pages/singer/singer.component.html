@@ -1,1 +1,12 @@
-<p>singer works!</p>
+<ng-container  *ngIf="singer$ | async as singers; else empty">
+  <app-singer-card
+  *ngFor="let v of singers"
+  [singer]="v"
+  (clickEvent)="singerHandler($event)"
+  ></app-singer-card>
+</ng-container>
+
+
+<ng-template #empty>
+  <app-loading></app-loading>
+</ng-template>

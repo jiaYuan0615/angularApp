@@ -14,7 +14,7 @@ export class HeaderComponent implements OnInit {
   }
 
 
-  goToRoute(path?: string) {
+  goToRoute(path?: string[]) {
     this.globalService.goToRoute(path)
   }
 }

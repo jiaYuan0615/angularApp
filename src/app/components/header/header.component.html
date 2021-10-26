@@ -1,8 +1,8 @@
 <nz-header>
   <div class="logo"></div>
   <ul nz-menu nzTheme="dark" nzMode="horizontal">
-    <li nz-menu-item (click)="goToRoute('/')">歌曲列表</li>
-    <li nz-menu-item (click)="goToRoute('singer')">歌手列表</li>
-    <li nz-menu-item (click)="goToRoute('group')">團體列表</li>
+    <li nz-menu-item [routerLink]="" (click)="goToRoute(['/'])">歌曲列表</li>
+    <li nz-menu-item [routerLink]="" (click)="goToRoute(['singer'])">歌手列表</li>
+    <li nz-menu-item [routerLink]="" (click)="goToRoute(['group'])">團體列表</li>
   </ul>
 </nz-header>

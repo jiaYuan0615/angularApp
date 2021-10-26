@@ -17,7 +17,7 @@ export class BreadcrumbComponent implements OnInit {
   ngOnInit(): void { }
 
   goToRoute(path: string) {
-    this.globalService.goToRoute(path)
+    this.globalService.goToRoute(new Array(path))
   }
 
 }
