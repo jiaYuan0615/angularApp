@@ -1,5 +1,10 @@
 <nz-card [nzTitle]="singer.name">
-  <nz-avatar [nzSize]="64" nzIcon="user" [nzSrc]="singer.avatar"></nz-avatar>
+  <nz-avatar
+    [nzSize]="64"
+    nzIcon="user"
+    [nzSrc]="singer.avatar"
+    style="padding-bottom: 5px;"
+  ></nz-avatar>
   <p>歌手：{{singer.name}}</p>
   <p>性別：{{singer.gender}}</p>
   <p>出生年月日：{{singer.birth | date:'yyyy-MM-dd'}}</p>

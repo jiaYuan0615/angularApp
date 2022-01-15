@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-global',
@@ -7,9 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GlobalComponent implements OnInit {
 
+
   constructor() { }
 
   ngOnInit(): void {
   }
-
 }

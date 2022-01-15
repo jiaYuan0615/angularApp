@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { map } from 'rxjs/operators';
-import { GlobalService } from 'src/app/service/global.service';
-import { SoundService } from 'src/app/service/sound.service';
+import { Store } from '@ngrx/store';
+import * as fromStore from '../../store';
 
 @Component({
   selector: 'app-sound',
@@ -10,11 +8,13 @@ import { SoundService } from 'src/app/service/sound.service';
   styleUrls: ['./sound.component.less']
 })
 export class SoundComponent implements OnInit {
-  constructor(private soundService: SoundService, private route: ActivatedRoute, private global: GlobalService) { }
+  constructor(
+    private store: Store<fromStore.State>,
+  ) { }
   // sounds: Sounds
-  sound$ = this.soundService.getSound().pipe(map(x => x.sounds));
 
   ngOnInit(): void {
+    console.log();
 
     // const observer = {
     //   next: v => this.sounds = v,
@@ -26,7 +26,7 @@ export class SoundComponent implements OnInit {
   }
 
   goToRoute(path: string[]) {
-    this.global.goToRoute(path)
+    this.store.dispatch(fromStore.GoToRouteAction({ payload: { path } }))
   }
 
   handler(sound) {

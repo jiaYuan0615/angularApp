@@ -1,3 +1,14 @@
 <nz-layout class="layout">
-  <router-outlet></router-outlet>
+  <nz-card class="login-card">
+    <nz-card-tab>
+      <nz-tabset
+        nzSize="large"
+        [nzSelectedIndex]="currentSelectIndex"
+      >
+        <nz-tab nzTitle="會員登入"></nz-tab>
+        <nz-tab nzTitle="忘記密碼"></nz-tab>
+      </nz-tabset>
+    </nz-card-tab>
+    <router-outlet></router-outlet>
+  </nz-card>
 </nz-layout>

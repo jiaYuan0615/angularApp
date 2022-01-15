@@ -1,0 +1,67 @@
+<form
+  nz-form
+  [formGroup]="singerForm"
+  class="login-form"
+  (ngSubmit)="submitForm()"
+>
+<div class="clearfix">
+  <nz-upload
+    nzAction=""
+    nzListType="picture"
+  >
+    <button nz-button>
+      <i nz-icon nzType="upload"></i>
+      上傳圖片
+    </button>
+  </nz-upload>
+</div>
+
+  <nz-form-item>
+    <nz-form-control nzErrorTip="歌手姓名為必填">
+      <nz-input-group nzPrefixIcon="user">
+        <input type="text" nz-input formControlName="name" placeholder="歌手姓名" />
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control>
+      <nz-input-group nzPrefixIcon="">
+        <textarea nz-input formControlName="biography" placeholder="歌手介紹"></textarea>
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-select nzShowSearch formControlName="groupId" nzAllowClear nzPlaceHolder="選擇團體" [(ngModel)]="groupSelet">
+      <nz-option *ngFor="let v of groups" [nzLabel]="v.name" [nzValue]="v.id"></nz-option>
+      <!-- <nz-option nzLabel="木曜四超玩" nzValue="木曜四超玩"></nz-option>
+      <nz-option nzLabel="動力火車" nzValue="動力火車"></nz-option> -->
+    </nz-select>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control nzErrorTip="歌手姓名為必填">
+      <nz-input-group nzPrefixIcon="user">
+        <input type="text" nz-input formControlName="nickname" placeholder="歌手暱稱" />
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired>歌手性別</nz-form-label>
+    <nz-radio-group [(ngModel)]="genderValue">
+      <label nz-radio nzValue="男生">男生</label>
+      <label nz-radio nzValue="女生">女生</label>
+    </nz-radio-group>
+</nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired>出生日期</nz-form-label>
+    <nz-form-control [nzSm]="16" [nzXs]="24">
+      <nz-date-picker formControlName="birth"></nz-date-picker>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-select nzShowSearch formControlName="country" nzAllowClear nzPlaceHolder="選擇國籍" [(ngModel)]="countrySelet">
+      <nz-option nzLabel="台灣" nzValue="台灣"></nz-option>
+      <nz-option nzLabel="馬來西亞" nzValue="馬來西亞"></nz-option>
+      <nz-option nzLabel="新加坡" nzValue="新加坡"></nz-option>
+    </nz-select>
+  </nz-form-item>
+</form>

@@ -12,8 +12,10 @@ import { map } from 'rxjs/operators';
 export class ProfileComponent implements OnInit {
 
 
-  constructor(private route: ActivatedRoute, private router: Router) {
-    console.log(this.router);
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router
+  ) {
     const observer = {
       next: (value) => { },
       error: (error) => { },

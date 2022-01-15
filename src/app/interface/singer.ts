@@ -1,5 +1,6 @@
 export interface Singers {
   singer: Singer[];
+  totalQuantity: string;
 }
 
 export interface Singer {

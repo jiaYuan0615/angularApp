@@ -21,7 +21,7 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'user',
+    path: 'auth',
     component: LoginComponent,
     children: [
       { path: 'login', component: LoginFormComponent },

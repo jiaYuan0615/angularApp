@@ -5,3 +5,21 @@
   margin: 16px 24px 16px 0;
   float: left;
 }
+
+@media screen and(max-width:500px) {
+  .header {
+    position: relative;
+  }
+  ul {
+    position: absolute;
+    right: 0;
+    padding-top: 63px;
+  }
+  ul li {
+    display: block;
+  }
+
+  ul li + li {
+    border-top: 1px solid #aac;
+  }
+}

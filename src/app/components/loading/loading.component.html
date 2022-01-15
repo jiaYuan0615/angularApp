@@ -1,5 +1,9 @@
+<ng-template #customIndicator>
+  <i nz-icon nzType="loading"></i>
+</ng-template>
 <nz-spin
   nzSimple
+  [nzIndicator]="customIndicator"
   [nzSize]="'large'"
   class="loading">
 </nz-spin>

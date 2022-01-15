@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import * as fromStore from '../../../store';
+import { PostMemberLoginAction } from '../../../store/actions/member.actions';
 
 @Component({
   selector: 'app-login-form',
@@ -9,11 +12,14 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class LoginFormComponent implements OnInit {
   loginForm: FormGroup
 
-  constructor(private fb: FormBuilder) { }
+  constructor(
+    private fb: FormBuilder,
+    private store: Store<fromStore.State>,
+  ) { }
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
-      email: ['heroyuans@gmail.com', [Validators.required]],
+      email: ['heroyuans@gmail.com', [Validators.required, Validators.email]],
       password: ['password', [Validators.required]]
     })
   }
@@ -25,6 +31,10 @@ export class LoginFormComponent implements OnInit {
         this.loginForm.controls[i].updateValueAndValidity();
       }
     }
+  }
 
+  login() {
+    this.store.dispatch(PostMemberLoginAction(this.loginForm.value));
+    // this.store.dispatch(fromStore.GoToRouteAction({ payload: { path: ['/'] } }))
   }
 }

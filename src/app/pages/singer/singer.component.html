@@ -1,11 +1,36 @@
-<ng-container  *ngIf="singer$ | async as singers; else empty">
-  <app-singer-card
-  *ngFor="let v of singers"
-  [singer]="v"
-  (clickEvent)="singerHandler($event)"
-  ></app-singer-card>
-</ng-container>
+<button
+    nz-button
+    [nzType]="'primary'"
+    (click)="showModal()">
+    <span>新增歌手</span>
+</button>
+<nz-modal
+  [(nzVisible)]="isVisible"
+  nzTitle="新增歌手資訊"
+  (nzOnCancel)="handleCancel()"
+  (nzOnOk)="handleOk()">
+  <ng-container>
+    <!-- <div *ngIf="group$ | async as groups"> -->
+      <app-singer-form [groups]="groups"></app-singer-form>
+    <!-- </div> -->
+  </ng-container>
+</nz-modal>
 
+<ng-container *ngIf="singer$ | async as singers; else empty">
+  <div class="singer" nz-row [nzGutter]="{ xs: 8, sm: 16, md: 24, lg: 32 }">
+      <app-singer-card
+        nz-col
+        class="gutter-row"
+        [nzSpan]="6"
+        *ngFor="let v of singers"
+        [singer]="v"
+        (clickEvent)="singerHandler($event)"
+      ></app-singer-card>
+  </div>
+  <app-pagination
+    [totalQuantity]="50"
+  ></app-pagination>
+</ng-container>
 
 <ng-template #empty>
   <app-loading></app-loading>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { GlobalService } from '../../service/global.service';
+import { Store } from '@ngrx/store';
+import * as fromStore from '../../store';
 
 @Component({
   selector: 'app-header',
@@ -8,13 +9,15 @@ import { GlobalService } from '../../service/global.service';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private globalService: GlobalService) { }
+  constructor(
+    private store: Store<fromStore.State>,
+  ) { }
 
   ngOnInit(): void {
   }
 
 
-  goToRoute(path?: string[]) {
-    this.globalService.goToRoute(path)
+  goToRoute(path: string[]) {
+    this.store.dispatch(fromStore.GoToRouteAction({ payload: { path } }))
   }
 }

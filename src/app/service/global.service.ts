@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import * as fromStore from '../store';
+import { Store } from '@ngrx/store';
 
 const { router: api } = environment;
 
@@ -13,11 +15,12 @@ export class GlobalService {
 
   constructor(
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private store: Store<fromStore.State>,
   ) { }
 
   goToRoute(path: string[]) {
-    this.router.navigate(path);
+    this.store.dispatch(fromStore.GoToRouteAction({ payload: { path } }));
   }
 
   get<T>(path: string, options?: object) {
@@ -32,7 +35,7 @@ export class GlobalService {
     return this.http.put<T>(`${api}${path}`, payload, options)
   }
 
-  delete<T>(path: string, payload?: object, options?: object) {
+  delete<T>(path: string, options?: object) {
     return this.http.delete<T>(`${api}${path}`, options)
   }
 }
