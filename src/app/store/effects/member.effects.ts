@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
 import * as actions from '../actions'
 import { MemberService } from 'src/app/service/member.service';
-import { switchMap, map, tap, catchError } from 'rxjs/operators';
+import { switchMap, map, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { setToken } from 'src/app/utils/authorize';
 import { NzMessageService } from 'ng-zorro-antd/message';
@@ -20,7 +20,7 @@ export class MemberEffects {
   ) { }
 
 
-  // 沒有要額外呼叫另一個 action 需要加上 { dispatch: false }
+  // 沒有要透過呼叫 action 來放入資料到 reducers 時需要加上 { dispatch: false }
   // 通常登入的行為是寫入到 localstorage
   // 而不是將資料放入 state 裡面
   login$ = createEffect(() => this.actions$.pipe(

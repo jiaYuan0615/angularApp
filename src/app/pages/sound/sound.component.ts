@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { Sounds, Sound } from 'src/app/interface/sound';
 import * as fromStore from '../../store';
 
 @Component({
@@ -8,13 +10,15 @@ import * as fromStore from '../../store';
   styleUrls: ['./sound.component.less']
 })
 export class SoundComponent implements OnInit {
+  sounds$: Observable<Sound[]>;
   constructor(
     private store: Store<fromStore.State>,
   ) { }
-  // sounds: Sounds
 
   ngOnInit(): void {
-    console.log();
+    this.store.dispatch(fromStore.GetSoundAction());
+    this.sounds$ = this.store.select(fromStore.getSoundSelector);
+
 
     // const observer = {
     //   next: v => this.sounds = v,
@@ -22,11 +26,6 @@ export class SoundComponent implements OnInit {
     //   complete: () => { }
 
     // }
-    // this.soundService.getSound().subscribe(observer)
-  }
-
-  goToRoute(path: string[]) {
-    this.store.dispatch(fromStore.GoToRouteAction({ payload: { path } }))
   }
 
   handler(sound) {

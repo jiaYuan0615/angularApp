@@ -15,7 +15,6 @@ export class GlobalService {
 
   constructor(
     private http: HttpClient,
-    private router: Router,
     private store: Store<fromStore.State>,
   ) { }
 

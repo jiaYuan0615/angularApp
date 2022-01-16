@@ -13,6 +13,10 @@ export class MemberService {
     private store: Store<fromStore.State>,
   ) { }
 
+  getMember() {
+    return this.global.get
+  }
+
   postLogin(payload: any) {
     return this.global.post<any>('member/login', payload)
   }

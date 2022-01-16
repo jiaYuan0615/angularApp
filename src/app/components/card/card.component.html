@@ -2,6 +2,10 @@
   <p>歌手：{{sound.cover}}</p>
   <p>發行年份：{{sound.publishYear}}</p>
   <p>建立時間：{{sound.createdAt | date:'yyyy-MM-dd'}}</p>
+  <div>
+    <p>歌詞：</p>
+    <p [innerHtml]="sound.lyrics"></p>
+  </div>
   <button
     nz-button
     nzType="primary"
