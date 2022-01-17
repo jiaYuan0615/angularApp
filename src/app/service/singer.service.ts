@@ -2,8 +2,8 @@ import { HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Singers } from '../interface/singer';
-import { GlobalService } from './global.service';
-import { TokenService } from './token.service';
+import { Request } from '../utils/request';
+import { getToken } from '../utils/authorize';
 
 const { router } = environment;
 
@@ -14,8 +14,7 @@ const { router } = environment;
 export class SingerService {
 
   constructor(
-    private token: TokenService,
-    private global: GlobalService,
+    private request: Request,
   ) { }
 
   getSinger({ offset, limit }) {
@@ -24,16 +23,16 @@ export class SingerService {
     params.set("limit", limit);
     if (!!offset) params.set("offset", offset)
 
-    return this.global.get<Singers>('singer', { params });
+    return this.request.get<Singers>('singer', { params });
 
   }
 
   postSinger(payload: Singers) {
     const options = {
       headers: new HttpHeaders({
-        Authorization: `bearer ${this.token.getToken()}`,
+        Authorization: `bearer ${getToken()}`,
       })
     }
-    return this.global.post<Singers>("sound", payload, options);
+    return this.request.post<Singers>("sound", payload, options);
   }
 }

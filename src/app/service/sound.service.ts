@@ -2,8 +2,8 @@ import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Sound, Sounds } from '../interface/sound';
-import { GlobalService } from './global.service';
-import { TokenService } from './token.service';
+import { Request } from '../utils/request';
+import { getToken } from '../utils/authorize';
 
 @Injectable({
   providedIn: 'root'
@@ -13,12 +13,11 @@ import { TokenService } from './token.service';
 export class SoundService {
 
   constructor(
-    private token: TokenService,
-    private global: GlobalService
+    private request: Request,
   ) { }
 
   getSound() {
-    return this.global.get<Sounds>("sound")
+    return this.request.get<Sounds>("sound")
       .pipe(
         map(x => {
           x.sounds.forEach(v => {
@@ -33,9 +32,9 @@ export class SoundService {
   postSound(payload: Sound) {
     const options = {
       headers: new HttpHeaders({
-        Authorization: `bearer ${this.token.getToken()}`,
+        Authorization: `bearer ${getToken()}}`,
       })
     }
-    return this.global.post<Sound>("sound", payload, options);
+    return this.request.post<Sound>("sound", payload, options);
   };
 }

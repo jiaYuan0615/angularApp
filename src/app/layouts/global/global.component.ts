@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, HostListener, OnInit } from '@angular/core';
+import * as fromStore from '../../store';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-global',
@@ -8,8 +9,9 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class GlobalComponent implements OnInit {
 
-
-  constructor() { }
+  constructor(
+    private store: Store<fromStore.State>
+  ) { }
 
   ngOnInit(): void {
   }

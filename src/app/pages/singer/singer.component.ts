@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs/operators';
+import { select, Store } from '@ngrx/store';
 import { Group } from 'src/app/interface/group';
 import { GroupService } from 'src/app/service/group.service';
 import { SingerService } from 'src/app/service/singer.service';
+import * as fromStore from '../../store';
 
 @Component({
   selector: 'app-singer',
@@ -10,23 +12,18 @@ import { SingerService } from 'src/app/service/singer.service';
   styleUrls: ['./singer.component.less'],
 })
 export class SingerComponent implements OnInit {
-  singer$ = this.singerService
-    .getSinger({ offset: 20, limit: 20 })
-    .pipe(map((x) => x.singer));
-  group$ = this.groupService.getGroup().pipe(map((x) => x.group));
   isVisible = false;
 
   groups: Group[];
 
   constructor(
-    private singerService: SingerService,
-    private groupService: GroupService,
+    private store: Store<fromStore.State>,
   ) {
-    this.groupService.getGroup().subscribe((x) => (this.groups = x.group));
   }
 
   ngOnInit(): void {
     throw new Error('Method not implemented.');
+    // this.store.dispatch(fromStore.)
   }
 
   singerHandler(singer: any) {

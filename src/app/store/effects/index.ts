@@ -5,7 +5,7 @@ import { SoundEffects } from './sound.effects';
 export const effects: any[] = [
   MemberEffects,
   RouterEffects,
-  SoundEffects
+  SoundEffects,
 ];
 
 export * from './member.effects'

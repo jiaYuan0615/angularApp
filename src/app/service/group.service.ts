@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Groups } from '../interface/group';
-import { GlobalService } from './global.service';
+import { Request } from '../utils/request';
 
 
 @Injectable({
@@ -8,9 +8,11 @@ import { GlobalService } from './global.service';
 })
 export class GroupService {
 
-  constructor(private global: GlobalService) { }
+  constructor(
+    private request: Request,
+  ) { }
 
   getGroup() {
-    return this.global.get<Groups>("group");
+    return this.request.get<Groups>("group");
   }
 }

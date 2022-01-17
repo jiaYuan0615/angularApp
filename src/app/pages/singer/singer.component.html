@@ -16,7 +16,7 @@
   </ng-container>
 </nz-modal>
 
-<ng-container *ngIf="singer$ | async as singers; else empty">
+<!-- <ng-container *ngIf="singer$ | async as singers; else empty">
   <div class="singer" nz-row [nzGutter]="{ xs: 8, sm: 16, md: 24, lg: 32 }">
       <app-singer-card
         nz-col
@@ -30,7 +30,7 @@
   <app-pagination
     [totalQuantity]="50"
   ></app-pagination>
-</ng-container>
+</ng-container> -->
 
 <ng-template #empty>
   <app-loading></app-loading>

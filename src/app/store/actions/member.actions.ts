@@ -5,6 +5,7 @@ import { MemberLogin } from '../../interface/member';
 
 const getMember = '[member] getMember';
 const postMemberLogin = '[member] postMemberLogin';
+const memberLoginFail = '[member] memberLoginFail'
 
 export const GetMemberAction = createAction(
   getMember

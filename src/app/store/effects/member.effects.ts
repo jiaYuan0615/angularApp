@@ -6,7 +6,6 @@ import { switchMap, map, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { setToken } from 'src/app/utils/authorize';
 import { NzMessageService } from 'ng-zorro-antd/message';
-import { GlobalService } from 'src/app/service/global.service';
 
 // effects 處理對應商業邏輯（大部分是和後端取資料）
 
@@ -15,7 +14,6 @@ export class MemberEffects {
   constructor(
     private actions$: Actions,
     private memberService: MemberService,
-    private globalService: GlobalService,
     private message: NzMessageService
   ) { }
 
@@ -30,7 +28,7 @@ export class MemberEffects {
         map(({ message, token }) => {
           setToken(token)
           this.message.success(message)
-          this.globalService.goToRoute(['/'])
+          return actions.GoToRouteAction({ payload: { path: ['/'] } })
         }),
         catchError(({ error }) => of(this.message.error(error.message)))
       )

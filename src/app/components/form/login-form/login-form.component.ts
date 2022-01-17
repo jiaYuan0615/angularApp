@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import * as fromStore from '../../../store';
@@ -11,7 +11,7 @@ import { PostMemberLoginAction } from '../../../store/actions/member.actions';
 })
 export class LoginFormComponent implements OnInit {
   loginForm: FormGroup
-
+  @Input() isMoblie: boolean
   constructor(
     private fb: FormBuilder,
     private store: Store<fromStore.State>,
@@ -35,6 +35,6 @@ export class LoginFormComponent implements OnInit {
 
   login() {
     this.store.dispatch(PostMemberLoginAction(this.loginForm.value));
-    // this.store.dispatch(fromStore.GoToRouteAction({ payload: { path: ['/'] } }))
+
   }
 }

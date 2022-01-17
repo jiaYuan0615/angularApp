@@ -15,7 +15,7 @@ export interface State {
 export const reducers: ActionReducerMap<State> = {
   member: member.memberReducer,
   router: router.reducer,
-  sound: sound.soundReducer
+  sound: sound.soundReducer,
 }
 
 export { CustomSerializer } from './router.reducers';
