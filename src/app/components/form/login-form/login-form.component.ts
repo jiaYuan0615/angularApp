@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
+import { EventEmitter } from 'stream';
 import * as fromStore from '../../../store';
 import { PostMemberLoginAction } from '../../../store/actions/member.actions';
 
@@ -35,6 +36,5 @@ export class LoginFormComponent implements OnInit {
 
   login() {
     this.store.dispatch(PostMemberLoginAction(this.loginForm.value));
-
   }
 }

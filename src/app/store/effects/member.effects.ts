@@ -30,10 +30,13 @@ export class MemberEffects {
           this.message.success(message)
           return actions.GoToRouteAction({ payload: { path: ['/'] } })
         }),
-        catchError(({ error }) => of(this.message.error(error.message)))
+        catchError(({ error }) => {
+          this.message.error(error.message)
+          return of(actions.GoToRouteAction({ payload: { path: ['/'] } }))
+        })
       )
     }),
-  ), { dispatch: false });
+  ));
 
 
 }
