@@ -2,6 +2,7 @@
   <app-card
     *ngFor="let v of sounds"
     [sound]="v"
+    [cb]="callbackFn"
     (clickEvent)="handler($event)"
   ></app-card>
 </ng-container>

@@ -13,7 +13,10 @@
     </nz-card-tab>
     <container-element [ngSwitch]="currentSelectIndex">
       <some-element *ngSwitchCase="0">
-        <app-login-form [isMoblie]="isMoblie"></app-login-form>
+        <app-login-form
+        [isMoblie]="isMoblie"
+        [onSumbit]="onSumbit"
+        ></app-login-form>
       </some-element>
       <some-element *ngSwitchCase="1">
         忘記密碼，目前是{{ isMoblie ? "手機版":"網頁版"}}

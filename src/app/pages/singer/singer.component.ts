@@ -18,12 +18,9 @@ export class SingerComponent implements OnInit {
 
   constructor(
     private store: Store<fromStore.State>,
-  ) {
-  }
+  ) { }
 
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
-    // this.store.dispatch(fromStore.)
   }
 
   singerHandler(singer: any) {

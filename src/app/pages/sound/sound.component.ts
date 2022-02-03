@@ -11,6 +11,7 @@ import * as fromStore from '../../store';
 })
 export class SoundComponent implements OnInit {
   sounds$: Observable<Sound[]>;
+  isMobile$: Observable<any>;
   constructor(
     private store: Store<fromStore.State>,
   ) { }
@@ -18,17 +19,18 @@ export class SoundComponent implements OnInit {
   ngOnInit(): void {
     this.store.dispatch(fromStore.GetSoundAction());
     this.sounds$ = this.store.select(fromStore.getSoundSelector);
-
-
     // const observer = {
     //   next: v => this.sounds = v,
     //   error: e => console.log(e),
     //   complete: () => { }
-
     // }
   }
 
-  handler(sound) {
-    console.log(sound);
+  callbackFn = (data, datas) => {
+    console.log('callback', data, datas);
+  }
+
+  handler(sound: any) {
+    console.log('Get Component Output Event', sound);
   }
 }

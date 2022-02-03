@@ -49,6 +49,7 @@ import { SingerFormComponent } from './components/form/singer-form/singer-form.c
 import { StoreModule } from '@ngrx/store';
 import * as fromStore from './store'
 import { EffectsModule } from '@ngrx/effects';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { environment } from 'src/environments/environment';
 import { RouterStateSerializer, StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -107,6 +108,7 @@ const ngZorroModule = [
     ReactiveFormsModule,
     ...ngZorroModule,
     FormsModule,
+    CKEditorModule,
     BrowserAnimationsModule,
     StoreModule.forRoot(fromStore.reducers),
     EffectsModule.forRoot(fromStore.effects),
