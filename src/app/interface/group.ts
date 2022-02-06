@@ -8,3 +8,11 @@ export interface Group {
   createdAt: string;
   updatedAt: string;
 }
+
+export interface GroupCreate {
+  name: string;
+}
+
+export interface GroupUpdate {
+  name: string;
+}

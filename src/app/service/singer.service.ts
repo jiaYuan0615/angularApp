@@ -17,15 +17,16 @@ export class SingerService {
     private request: Request,
   ) { }
 
-  getSinger({ offset, limit }) {
-
-    let params = new HttpParams();
-    params.set("limit", limit);
-    if (!!offset) params.set("offset", offset)
-
-    return this.request.get<Singers>('singer', { params });
-
+  getSinger() {
+    return this.request.get<Singers>('singer');
   }
+
+  // getSinger({ offset, limit }) {
+  //   let params = new HttpParams();
+  //   params.set("limit", limit);
+  //   if (!!offset) params.set("offset", offset)
+  //   return this.request.get<Singers>('singer', { params });
+  // }
 
   postSinger(payload: Singers) {
     const options = {

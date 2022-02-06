@@ -24,15 +24,17 @@ export class MemberEffects {
   login$ = createEffect(() => this.actions$.pipe(
     ofType(actions.PostMemberLoginAction),
     switchMap((member) => {
-      return this.memberService.postLogin(member).pipe(
+      return this.memberService.postLogin(member.payload).pipe(
         map(({ message, token }) => {
           setToken(token)
           this.message.success(message)
+          member.callback('執行登入成功')
           return actions.GoToRouteAction({ payload: { path: ['/'] } })
         }),
         catchError(({ error }) => {
           this.message.error(error.message)
-          return of(actions.GoToRouteAction({ payload: { path: ['/'] } }))
+          member.callback('執行登入失敗')
+          return of(actions.GoToRouteAction({ payload: { path: ['/auth/login'] } }))
         })
       )
     }),

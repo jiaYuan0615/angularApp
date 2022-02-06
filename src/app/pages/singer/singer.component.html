@@ -11,26 +11,26 @@
   (nzOnOk)="handleOk()">
   <ng-container>
     <!-- <div *ngIf="group$ | async as groups"> -->
-      <app-singer-form [groups]="groups"></app-singer-form>
+      <!-- <app-singer-form [groups]="groups"></app-singer-form> -->
     <!-- </div> -->
   </ng-container>
 </nz-modal>
 
-<!-- <ng-container *ngIf="singer$ | async as singers; else empty">
-  <div class="singer" nz-row [nzGutter]="{ xs: 8, sm: 16, md: 24, lg: 32 }">
+<ng-container *ngIf="singers$ | async as singers; else empty">
+  <!-- <div class="singer" nz-row [nzGutter]="{ xs: 8, sm: 16, md: 24, lg: 32 }"> -->
       <app-singer-card
-        nz-col
         class="gutter-row"
         [nzSpan]="6"
         *ngFor="let v of singers"
         [singer]="v"
+        [goToRoute]="goToRoute"
         (clickEvent)="singerHandler($event)"
       ></app-singer-card>
-  </div>
+  <!-- </div> -->
   <app-pagination
     [totalQuantity]="50"
   ></app-pagination>
-</ng-container> -->
+</ng-container>
 
 <ng-template #empty>
   <app-loading></app-loading>

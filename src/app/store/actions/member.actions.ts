@@ -11,7 +11,11 @@ export const GetMemberAction = createAction(
   getMember
 );
 
+// export const PostMemberLoginAction = createAction(
+//   postMemberLogin,
+//   props<{ payload: MemberLogin }>()
+// )
 export const PostMemberLoginAction = createAction(
   postMemberLogin,
-  props<{ payload: MemberLogin }>()
+  props<{ payload: MemberLogin, callback?: (...args: any) => void }>()
 )

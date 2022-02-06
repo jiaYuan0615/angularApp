@@ -5,10 +5,12 @@
     [nzSrc]="singer.avatar"
     style="padding-bottom: 5px;"
   ></nz-avatar>
+
   <p>歌手：{{singer.name}}</p>
   <p>性別：{{singer.gender}}</p>
   <p>出生年月日：{{singer.birth | date:'yyyy-MM-dd'}}</p>
-  <p>個人簡歷：{{singer.biography}}</p>
+  <p>個人簡歷：</p>
+  <p [innerHtml]="singer.biography"></p>
   <button
     nz-button
     nzType="primary"

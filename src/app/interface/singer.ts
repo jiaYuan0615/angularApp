@@ -1,6 +1,6 @@
 export interface Singers {
   singer: Singer[];
-  totalQuantity: string;
+  // totalQuantity: string;
 }
 
 export interface Singer {
@@ -11,6 +11,26 @@ export interface Singer {
   groupId: string;
   nickname: string;
   gender: string;
+  birth: string | Date;
+  country: string;
+}
+
+
+export interface SingerCreate {
+  name: string;
+  avatar: string;
+  biography: string;
+  groupId: string;
+  nickname: string;
+  gender: string;
   birth: string;
   country: string;
+}
+
+
+export interface SingeUpdate {
+  name: string;
+  biography: string;
+  groupId: string;
+  nickname: string;
 }

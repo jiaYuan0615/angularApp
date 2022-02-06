@@ -8,6 +8,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class SingerCardComponent implements OnInit {
 
   @Input() singer;
+  @Input() goToRoute: (...args: any) => void;
   @Output('clickEvent') click = new EventEmitter();
 
   constructor() { }
@@ -17,6 +18,7 @@ export class SingerCardComponent implements OnInit {
 
   singerHandler() {
     this.click.emit(this.singer);
+    this.goToRoute(this.singer.id);
   }
 
 }

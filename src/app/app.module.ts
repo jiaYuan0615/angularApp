@@ -53,6 +53,8 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { environment } from 'src/environments/environment';
 import { RouterStateSerializer, StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { ResetPasswordFormComponent } from './components/form/reset-password-form/reset-password-form.component';
+import { ForgetPasswordFormComponent } from './components/form/forget-password-form/forget-password-form.component';
 
 registerLocaleData(zh);
 
@@ -100,6 +102,8 @@ const ngZorroModule = [
     PaginationComponent,
     SoundFormComponent,
     SingerFormComponent,
+    ResetPasswordFormComponent,
+    ForgetPasswordFormComponent,
   ],
   imports: [
     BrowserModule,

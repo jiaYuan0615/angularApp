@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { map } from 'rxjs/operators';
-import { select, Store } from '@ngrx/store';
-import { Group } from 'src/app/interface/group';
-import { GroupService } from 'src/app/service/group.service';
-import { SingerService } from 'src/app/service/singer.service';
+import { Store } from '@ngrx/store';
+import { Singer } from 'src/app/interface/singer';
 import * as fromStore from '../../store';
+import { GoToRouteAction } from '../../store/actions/router.actions'
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-singer',
@@ -14,13 +13,15 @@ import * as fromStore from '../../store';
 export class SingerComponent implements OnInit {
   isVisible = false;
 
-  groups: Group[];
+  singers$: Observable<Singer[]>
 
   constructor(
     private store: Store<fromStore.State>,
   ) { }
 
   ngOnInit(): void {
+    this.store.dispatch(fromStore.GetSingerAction());
+    this.singers$ = this.store.select(fromStore.getSingerSelector);
   }
 
   singerHandler(singer: any) {
@@ -37,5 +38,11 @@ export class SingerComponent implements OnInit {
 
   handleCancel(): void {
     this.isVisible = false;
+  }
+
+  goToRoute = (path: any) => {
+    console.log(path);
+
+    this.store.dispatch(GoToRouteAction({ payload: { path: [path] } }))
   }
 }

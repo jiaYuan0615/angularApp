@@ -8,7 +8,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class LoginFormComponent implements OnInit {
   loginForm: FormGroup
-  @Input() onSumbit: (...args: any) => void;
+  @Input() onSubmit: (...args: any) => void;
   @Input() isMoblie: boolean
   constructor(
     private fb: FormBuilder,
@@ -23,7 +23,7 @@ export class LoginFormComponent implements OnInit {
 
   submitForm() {
     if (this.loginForm.valid) {
-      this.onSumbit(this.loginForm.value);
+      this.onSubmit(this.loginForm.value, 'login');
     } else {
       for (const i in this.loginForm.controls) {
         if (this.loginForm.controls.hasOwnProperty(i)) {

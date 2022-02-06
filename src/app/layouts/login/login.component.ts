@@ -32,8 +32,14 @@ export class LoginComponent implements OnInit, AfterViewInit {
     this.currentSelectIndex = index
   }
 
-  onSumbit = (value) => {
-    this.store.dispatch(PostMemberLoginAction(value));
-
+  onSubmit = (value: any, type: string) => {
+    const callback = (param) => {
+      console.log(param);
+    }
+    if (type === 'login') {
+      this.store.dispatch(PostMemberLoginAction({ payload: value, callback }));
+    } else {
+      console.log(value, type);
+    }
   }
 }

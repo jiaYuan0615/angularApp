@@ -1,1 +1,10 @@
-<p>group works!</p>
+<ng-container *ngIf="groups$ | async as groups; else empty">
+<ul *ngFor="let v of groups">
+  <li>{{v.id}}</li>
+  <li>{{v.name}}</li>
+</ul>
+</ng-container>
+
+<ng-template #empty>
+  <app-loading></app-loading>
+</ng-template>
