@@ -1,8 +1,33 @@
 <nz-header class="header">
-  <div class="logo"></div>
-  <ul nz-menu nzTheme="dark" nzMode="horizontal">
-    <li nz-menu-item [routerLink]="" (click)="goToRoute(['/'])">歌曲列表</li>
-    <li nz-menu-item [routerLink]="" (click)="goToRoute(['singer'])">歌手列表</li>
-    <li nz-menu-item [routerLink]="" (click)="goToRoute(['group'])">團體列表</li>
-  </ul>
+  <div style="float: left;" (click)="goToRoute(['/'])">
+    <img src="assets/music.png" width="50" >
+  </div>
+  <ng-container *ngIf="isMobile else web">
+    <div style="float: right;">
+      <i style="font-size: larger; color: #fff;" nz-icon nzType="menu-unfold" (click)="showDrawer()" nzTheme="outline"></i>
+    </div>
+    <nz-drawer
+      [nzClosable]="true"
+      [nzVisible]="visible"
+      nzPlacement="right"
+      nzTitle="歌曲推薦"
+      (nzOnClose)="close()"
+    >
+    <ul nz-menu nzTheme="light"  nzMode="inline">
+      <li nz-menu-item (click)="goToRoute(['/'],close())">回首頁</li>
+      <li nz-menu-item (click)="goToRoute(['/sound'],close())">歌曲列表</li>
+      <li nz-menu-item (click)="goToRoute(['singer'],close())">歌手列表</li>
+      <li nz-menu-item (click)="goToRoute(['group'],close())">團體列表</li>
+    </ul>
+    </nz-drawer>
+  </ng-container>
 </nz-header>
+
+
+<ng-template #web>
+  <ul style="text-align: center;" nz-menu nzTheme="dark"  nzMode="horizontal">
+    <li nz-menu-item (click)="goToRoute(['/sound'])">歌曲列表</li>
+    <li nz-menu-item (click)="goToRoute(['singer'])">歌手列表</li>
+    <li nz-menu-item (click)="goToRoute(['group'])">團體列表</li>
+  </ul>
+</ng-template>

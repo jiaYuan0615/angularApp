@@ -1,5 +1,8 @@
 <nz-layout class="layout">
-  <app-header></app-header>
+  <app-header
+    [isMobile]="isMobile"
+    [goToRoute]="goToRoute"
+  ></app-header>
   <nz-content class="container">
       <router-outlet></router-outlet>
   </nz-content>

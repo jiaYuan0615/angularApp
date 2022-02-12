@@ -1,1 +1,19 @@
-<p>profile works!</p>
+<h1>歡迎進入歌曲推薦系統</h1>
+<p>現在時間：{{currentTime | date:'yyyy-MM-dd hh:mm:ss'}}</p>
+<nz-carousel
+  [nzAutoPlay]="true"
+  [nzAutoPlaySpeed]="5000"
+>
+  <div
+    *ngFor="let v of items ; let i = index"
+    nz-carousel-content
+  >
+    <h3>{{ v }}</h3>
+  </div>
+</nz-carousel>
+
+<nz-calendar
+  [nzMode]="mode"
+  (nzSelectChange)="handleSelectDate($event)"
+  (nzPanelChange)="panelChange($event)">
+</nz-calendar>

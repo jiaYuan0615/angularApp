@@ -6,6 +6,7 @@ const getSingerSuccess = '[singer] getSingerSuccess';
 const getSingerFail = '[singer] getSingerFail';
 const getSpecifySinger = '[singer] getSpecifySinger';
 const postSinger = '[singer] postSinger';
+const postSingerFail = '[singer] postSingerFail';
 const putSinger = '[singer] putSinger';
 const deleteSinger = '[singer] deleteSinger';
 
@@ -30,7 +31,12 @@ export const GetSpecifySingerAction = createAction(
 
 export const PostSingerAction = createAction(
   postSinger,
-  props<{ payload: SingerCreate }>()
+  props<{ payload: any }>()
+)
+
+export const PostSingerFailAction = createAction(
+  postSingerFail,
+  props<{ payload: string }>()
 )
 
 export const PutSingerAction = createAction(

@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
   @HostListener('window:resize', ['$event'])
   ngAfterViewInit(): void {
+    // package to util function
     if (window.innerWidth > this.width) {
       this.isMoblie = false;
     } else {

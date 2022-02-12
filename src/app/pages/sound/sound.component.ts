@@ -10,6 +10,7 @@ import * as fromStore from '../../store';
   styleUrls: ['./sound.component.less']
 })
 export class SoundComponent implements OnInit {
+  isVisible = false;
   sounds$: Observable<Sound[]>;
   isMobile$: Observable<any>;
   constructor(
@@ -32,5 +33,17 @@ export class SoundComponent implements OnInit {
 
   handler(sound: any) {
     console.log('Get Component Output Event', sound);
+  }
+
+  showModal(): void {
+    this.isVisible = true;
+  }
+
+  handleOk(): void {
+    this.isVisible = false;
+  }
+
+  handleCancel(): void {
+    this.isVisible = false;
   }
 }

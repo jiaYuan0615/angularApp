@@ -14,10 +14,15 @@ const routes: Routes = [
     path: '',
     component: GlobalComponent,
     children: [
-      { path: '', component: SoundComponent },
+      { path: '', component: ProfileComponent },
+      { path: 'sound', component: SoundComponent },
+      { path: 'sound/:id', component: SoundComponent },
       { path: 'singer', component: SingerComponent },
+      { path: 'singer/:id', component: SingerComponent },
       { path: 'group', component: GroupComponent },
+      { path: 'group/:id', component: GroupComponent },
       { path: 'profile', component: ProfileComponent },
+      { path: '*', redirectTo: '/' }
     ]
   },
   {

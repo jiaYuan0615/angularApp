@@ -1,11 +1,9 @@
 import { HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { Singers } from '../interface/singer';
+import { SingerCreate, Singers } from '../interface/singer';
 import { Request } from '../utils/request';
 import { getToken } from '../utils/authorize';
-
-const { router } = environment;
 
 @Injectable({
   providedIn: 'root'
@@ -28,12 +26,13 @@ export class SingerService {
   //   return this.request.get<Singers>('singer', { params });
   // }
 
-  postSinger(payload: Singers) {
+  postSinger(payload: SingerCreate) {
     const options = {
       headers: new HttpHeaders({
         Authorization: `bearer ${getToken()}`,
+        // 'Content-Type': 'multipart/form-data'
       })
     }
-    return this.request.post<Singers>("sound", payload, options);
+    return this.request.post<any>("singer", payload, options);
   }
 }

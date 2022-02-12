@@ -1,9 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Singer } from 'src/app/interface/singer';
 import * as fromStore from '../../store';
 import { GoToRouteAction } from '../../store/actions/router.actions'
 import { Observable } from 'rxjs';
+import { Group } from 'src/app/interface/group';
+import { SingerFormComponent } from 'src/app/components/form/singer-form/singer-form.component';
+import { PostSingerAction } from '../../store';
+import { formatDate } from '@angular/common';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-singer',
@@ -12,16 +17,20 @@ import { Observable } from 'rxjs';
 })
 export class SingerComponent implements OnInit {
   isVisible = false;
-
   singers$: Observable<Singer[]>
+  groups$: Observable<Group[]>
+
+  @ViewChild(SingerFormComponent) sfc: SingerFormComponent
 
   constructor(
-    private store: Store<fromStore.State>,
+    private store: Store<fromStore.State>
   ) { }
 
   ngOnInit(): void {
     this.store.dispatch(fromStore.GetSingerAction());
+    this.store.dispatch(fromStore.GetGroupAction());
     this.singers$ = this.store.select(fromStore.getSingerSelector);
+    this.groups$ = this.store.select(fromStore.getGroupSelector);
   }
 
   singerHandler(singer: any) {
@@ -32,17 +41,40 @@ export class SingerComponent implements OnInit {
     this.isVisible = true;
   }
 
+  onSubmit = (value: any, callback: any) => {
+    const payload = new FormData();
+    Object.keys(value).map(key => {
+      if (key === 'birth') {
+        payload.append(key, moment(value[key]).format())
+      }
+      payload.append(key, value[key])
+    })
+    // payload.forEach((value, key) => console.log(`${key}:${value}`))
+    this.store.dispatch(PostSingerAction({ payload }))
+    callback()
+  }
+
   handleOk(): void {
-    this.isVisible = false;
+    const callback = () => {
+      this.sfc.singerForm.reset();
+      this.sfc.handleReset()
+      this.isVisible = false;
+    }
+    const value = this.sfc.submitForm()
+    if (!!value) {
+      this.onSubmit(value, callback)
+    } else {
+      this.isVisible = true
+    }
   }
 
   handleCancel(): void {
     this.isVisible = false;
+    this.sfc.singerForm.reset()
+    this.sfc.handleReset()
   }
 
-  goToRoute = (path: any) => {
-    console.log(path);
-
-    this.store.dispatch(GoToRouteAction({ payload: { path: [path] } }))
+  goToRoute = (path: string[]) => {
+    this.store.dispatch(GoToRouteAction({ payload: { path } }))
   }
 }

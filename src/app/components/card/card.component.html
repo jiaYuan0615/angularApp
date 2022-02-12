@@ -1,16 +1,21 @@
-<nz-card [nzTitle]="sound.name">
-  <p>歌手：{{sound.cover}}</p>
-  <p>發行年份：{{sound.publishYear}}</p>
-  <p>建立時間：{{sound.createdAt | date:'yyyy-MM-dd'}}</p>
-  <div>
-    <p>歌詞：</p>
-    <p [innerHtml]="sound.lyrics"></p>
+<div class="sound">
+  <div class="soundInfo">
+    <div>
+      <h3>{{sound.name}}</h3>
+      <p>歌手：{{sound.cover}}</p>
+    </div>
+    <div>
+      <p>發行年份：{{sound.publishYear}}</p>
+      <p>電影主題曲：{{sound.ost}}</p>
+    </div>
+    <button
+        nz-button
+        class="search"
+        nzType="primary"
+        nzShape="circle"
+        (click)="soundHandler()"
+      >
+        <i nz-icon nzType="search"></i>
+      </button>
   </div>
-  <button
-    nz-button
-    nzType="primary"
-    (click)="soundHandler()"
-    >
-    {{sound.cover}}
-  </button>
-</nz-card>
+</div>

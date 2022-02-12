@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import * as fromStore from '../../store';
 
@@ -9,6 +9,11 @@ import * as fromStore from '../../store';
 })
 export class HeaderComponent implements OnInit {
 
+  @Input() isMobile: boolean
+  @Input() goToRoute: (...args) => void
+
+  visible = false
+
   constructor(
     private store: Store<fromStore.State>,
   ) { }
@@ -16,8 +21,12 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
-  goToRoute(path: string[]) {
-    this.store.dispatch(fromStore.GoToRouteAction({ payload: { path } }))
+  showDrawer() {
+    this.visible = true
   }
+
+  close() {
+    this.visible = false
+  }
+
 }

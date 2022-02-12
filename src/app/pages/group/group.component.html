@@ -1,8 +1,26 @@
+<div style="margin: 10px;">
+  <button
+    nz-button
+    [nzType]="'primary'"
+    (click)="showModal()"
+    >
+    <i nz-icon nzType="plus" nzTheme="outline"></i>
+    新增團體
+</button>
+</div>
+<nz-modal
+  [(nzVisible)]="isVisible"
+  nzTitle="新增團體資訊"
+  (nzOnCancel)="handleCancel()"
+  (nzOnOk)="handleOk()">
+  <ng-container>
+  </ng-container>
+</nz-modal>
 <ng-container *ngIf="groups$ | async as groups; else empty">
-<ul *ngFor="let v of groups">
-  <li>{{v.id}}</li>
-  <li>{{v.name}}</li>
-</ul>
+  <ul *ngFor="let v of groups">
+    <li>{{v.id}}</li>
+    <li>{{v.name}}</li>
+  </ul>
 </ng-container>
 
 <ng-template #empty>

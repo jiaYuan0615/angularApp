@@ -4,10 +4,11 @@ import *  as actions from '../actions';
 
 export interface GroupState {
   groups: Group[];
+
 }
 
 export const initialState: GroupState = {
-  groups: []
+  groups: undefined
 }
 
 export const groupReducer = createReducer(

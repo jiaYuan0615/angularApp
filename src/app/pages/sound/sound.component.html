@@ -1,12 +1,36 @@
+<div style="margin: 10px;">
+  <button
+    nz-button
+    [nzType]="'primary'"
+    (click)="showModal()"
+    >
+    <i nz-icon nzType="plus" nzTheme="outline"></i>
+    新增歌曲
+</button>
+</div>
+<nz-modal
+  [(nzVisible)]="isVisible"
+  nzTitle="新增歌曲資訊"
+  (nzOnCancel)="handleCancel()"
+  (nzOnOk)="handleOk()">
+  <ng-container>
+  </ng-container>
+</nz-modal>
+
 <ng-container  *ngIf="sounds$ | async as sounds; else empty">
-  <app-card
-    *ngFor="let v of sounds"
-    [sound]="v"
-    [cb]="callbackFn"
-    (clickEvent)="handler($event)"
-  ></app-card>
+  <div class="sound" nz-row>
+    <app-card
+      *ngFor="let v of sounds"
+      nz-col
+      [nzLg]="24"
+      [nzXs]="24"
+      [sound]="v"
+      [cb]="callbackFn"
+      (clickEvent)="handler($event)"
+    ></app-card>
+</div>
 </ng-container>
 
 <ng-template #empty>
-  <app-loading></app-loading>
+  <nz-skeleton [nzActive]="true"></nz-skeleton>
 </ng-template>

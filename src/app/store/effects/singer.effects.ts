@@ -23,4 +23,20 @@ export class SingerEffects {
       )
     }),
   ));
+
+  postSinger$ = createEffect(() => this.actions$.pipe(
+    ofType(actions.PostSingerAction),
+    switchMap(({ payload }) => {
+      return this.singerService.postSinger(payload).pipe(
+        map(({ message }) => {
+          this.message.success(message)
+          return actions.GetSingerAction()
+        }),
+        catchError(({ error }) => {
+          this.message.error(error.message);
+          return of(actions.PostSingerFailAction({ payload: error }))
+        })
+      )
+    })
+  ))
 }

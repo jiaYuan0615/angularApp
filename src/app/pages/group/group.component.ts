@@ -10,7 +10,7 @@ import { Group } from 'src/app/interface/group';
   styleUrls: ['./group.component.less']
 })
 export class GroupComponent implements OnInit {
-
+  isVisible = false;
   groups$: Observable<Group[]>
   constructor(
     private store: Store<fromStore.State>,
@@ -21,4 +21,15 @@ export class GroupComponent implements OnInit {
     this.groups$ = this.store.select(fromStore.getGroupSelector);
   }
 
+  showModal(): void {
+    this.isVisible = true;
+  }
+
+  handleOk(): void {
+    this.isVisible = false;
+  }
+
+  handleCancel(): void {
+    this.isVisible = false;
+  }
 }

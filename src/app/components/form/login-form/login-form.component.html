@@ -1,4 +1,10 @@
-  <form nz-form nzLayout="vertical" [formGroup]="loginForm" class="login-form" (ngSubmit)="submitForm()">
+  <form
+    nz-form
+    nzLayout="vertical"
+    [formGroup]="loginForm"
+    class="login-form"
+    (ngSubmit)="submitForm()"
+  >
     <nz-form-item>
       <nz-form-label>信箱：</nz-form-label>
       <nz-form-control nzErrorTip="請輸入信箱">

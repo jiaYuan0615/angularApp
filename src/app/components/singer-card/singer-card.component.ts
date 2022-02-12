@@ -16,9 +16,8 @@ export class SingerCardComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  singerHandler() {
-    this.click.emit(this.singer);
-    this.goToRoute(this.singer.id);
+  singerHandler(id: string) {
+    this.goToRoute(['singer', id]);
   }
 
 }

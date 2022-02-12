@@ -1,17 +1,18 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { NZ_I18N, zh_TW } from 'ng-zorro-antd/i18n';
+import { NZ_I18N, zh_TW, en_US } from 'ng-zorro-antd/i18n';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
+import { NzProgressModule } from 'ng-zorro-antd/progress';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzResultModule } from 'ng-zorro-antd/result';
 import { NzCardModule } from 'ng-zorro-antd/card';
@@ -19,20 +20,26 @@ import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzGridModule } from 'ng-zorro-antd/grid';
+import { NzDrawerModule } from 'ng-zorro-antd/drawer';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
+import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
+import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
 import { NzRadioModule } from 'ng-zorro-antd/radio';
 import { NzTabsModule } from 'ng-zorro-antd/tabs'
+import { NzCarouselModule } from 'ng-zorro-antd/carousel';
 import { NzMessageModule } from 'ng-zorro-antd/message';
+import { NzCalendarModule } from 'ng-zorro-antd/calendar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { registerLocaleData } from '@angular/common';
 import zh from '@angular/common/locales/zh';
+import en from '@angular/common/locales/en';
 import { LoadingComponent } from './components/loading/loading.component';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 import { GlobalComponent } from './layouts/global/global.component';
@@ -55,10 +62,16 @@ import { RouterStateSerializer, StoreRouterConnectingModule } from '@ngrx/router
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { ResetPasswordFormComponent } from './components/form/reset-password-form/reset-password-form.component';
 import { ForgetPasswordFormComponent } from './components/form/forget-password-form/forget-password-form.component';
+import { ErrorLogHandler } from './error-log-handler';
+import { AgePipe } from './pipe/age.pipe';
 
 registerLocaleData(zh);
 
 const ngZorroModule = [
+  NzProgressModule,
+  NzDividerModule,
+  NzCarouselModule,
+  NzCalendarModule,
   NzLayoutModule,
   NzMessageModule,
   NzDatePickerModule,
@@ -79,6 +92,8 @@ const ngZorroModule = [
   NzSelectModule,
   NzRadioModule,
   NzGridModule,
+  NzDrawerModule,
+  NzSkeletonModule
 ]
 
 @NgModule({
@@ -104,6 +119,7 @@ const ngZorroModule = [
     SingerFormComponent,
     ResetPasswordFormComponent,
     ForgetPasswordFormComponent,
+    AgePipe,
   ],
   imports: [
     BrowserModule,
@@ -121,7 +137,8 @@ const ngZorroModule = [
   ],
   providers: [
     { provide: NZ_I18N, useValue: zh_TW },
-    { provide: RouterStateSerializer, useClass: fromStore.CustomSerializer }
+    { provide: RouterStateSerializer, useClass: fromStore.CustomSerializer },
+    { provide: ErrorHandler, useClass: ErrorLogHandler }
   ],
   bootstrap: [AppComponent]
 })
