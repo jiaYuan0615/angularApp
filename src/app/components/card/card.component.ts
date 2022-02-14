@@ -10,7 +10,7 @@ export class CardComponent implements OnInit {
 
   // 預設括號不填入參數則以定義的變數作為接收的參數
   @Input() sound: Sound;
-  @Input() cb: (...args) => void;
+  @Input() showModal: (...args) => void;
   // Output 一定只能使用 EventEmitter 的方式
   @Output('clickEvent') click = new EventEmitter<any>();
 
@@ -19,9 +19,4 @@ export class CardComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
-  soundHandler() {
-    this.click.emit(this.sound)
-  }
-
 }

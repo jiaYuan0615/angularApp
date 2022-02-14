@@ -12,7 +12,7 @@ export const initialState: MemberState = {
 export const memberReducer = createReducer(
   initialState,
   on(actions.GetMemberAction, state => ({ ...state })),
-  // on(actions.PostMemberLoginAction, (state, { payload }) => ({ ...state, member: payload })),
+  on(actions.GetMemberSuccessAction, (state, { payload }) => ({ ...state, member: payload }))
 )
 
 // for selector

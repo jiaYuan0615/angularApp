@@ -7,7 +7,6 @@ import { Observable } from 'rxjs';
 import { Group } from 'src/app/interface/group';
 import { SingerFormComponent } from 'src/app/components/form/singer-form/singer-form.component';
 import { PostSingerAction } from '../../store';
-import { formatDate } from '@angular/common';
 import * as moment from 'moment';
 
 @Component({
@@ -46,32 +45,32 @@ export class SingerComponent implements OnInit {
     Object.keys(value).map(key => {
       if (key === 'birth') {
         payload.append(key, moment(value[key]).format())
+      } else {
+        payload.append(key, value[key])
       }
-      payload.append(key, value[key])
     })
     // payload.forEach((value, key) => console.log(`${key}:${value}`))
     this.store.dispatch(PostSingerAction({ payload }))
     callback()
   }
 
+  callback(): void {
+    this.sfc.singerForm.reset();
+    this.sfc.handleReset()
+    this.isVisible = false;
+  }
+
   handleOk(): void {
-    const callback = () => {
-      this.sfc.singerForm.reset();
-      this.sfc.handleReset()
-      this.isVisible = false;
-    }
     const value = this.sfc.submitForm()
     if (!!value) {
-      this.onSubmit(value, callback)
+      this.onSubmit(value, this.callback())
     } else {
       this.isVisible = true
     }
   }
 
   handleCancel(): void {
-    this.isVisible = false;
-    this.sfc.singerForm.reset()
-    this.sfc.handleReset()
+    this.callback()
   }
 
   goToRoute = (path: string[]) => {

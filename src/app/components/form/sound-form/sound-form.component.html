@@ -1,1 +1,78 @@
-<p>sound-form works!</p>
+<form
+  nz-form
+  nzLayout="horizontal"
+  [formGroup]="soundForm"
+  class="sound-form"
+>
+  <nz-form-item>
+    <nz-form-label nzRequired nzFor="name">歌曲名稱</nz-form-label>
+    <nz-form-control nzErrorTip="歌曲名稱為必填">
+      <nz-input-group>
+        <input
+          type="text"
+          nz-input
+          formControlName="name"
+          placeholder="請輸入歌曲名稱"
+        />
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label nzRequired nzFor="lyrics">歌詞內容</nz-form-label>
+    <nz-form-control nzErrorTip="歌詞內容為必填">
+      <nz-input-group>
+        <textarea
+          nz-input
+          formControlName="lyrics"
+          placeholder="請輸入歌詞內容"
+        >
+      </textarea>
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label nzRequired nzFor="publishYear">發行年份</nz-form-label>
+    <nz-form-control nzErrorTip="發行年份為必選">
+      <nz-date-picker
+        style="width: 100%;"
+        nzMode="year"
+        formControlName="publishYear"
+        [nzPlaceHolder]="'請選擇發行年份'"
+        [nzDisabledDate]="handleIllegalDate"
+      >
+    </nz-date-picker>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label nzRequired nzFor="cover">演唱歌手</nz-form-label>
+    <nz-form-control nzErrorTip="演唱歌手為必選">
+      <nz-select
+        nzShowSearch
+        formControlName="cover"
+        nzAllowClear
+        nzPlaceHolder="選擇演唱歌手"
+      >
+        <nz-option
+          *ngFor="let v of singers"
+          [nzLabel]="v.name"
+          [nzValue]="v.id"
+        ></nz-option>
+      </nz-select>
+  </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label nzFor="OST">電影原聲帶</nz-form-label>
+    <nz-form-control>
+      <nz-input-group>
+        <input
+          type="text"
+          nz-input
+          formControlName="OST"
+          placeholder="請輸入電影原聲帶"
+        />
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+
+
+</form>

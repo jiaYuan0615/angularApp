@@ -2,6 +2,8 @@
   <app-header
     [isMobile]="isMobile"
     [goToRoute]="goToRoute"
+    [memberInfo]="memberInfo$ | async"
+    [logout]="logout"
   ></app-header>
   <nz-content class="container">
       <router-outlet></router-outlet>

@@ -1,6 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import * as fromStore from '../../store';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { ResetPasswordFormComponent } from '../form/reset-password-form/reset-password-form.component';
 
 @Component({
   selector: 'app-header',
@@ -10,23 +9,40 @@ import * as fromStore from '../../store';
 export class HeaderComponent implements OnInit {
 
   @Input() isMobile: boolean
+  @Input() memberInfo: any
+  @Input() logout: () => void;
   @Input() goToRoute: (...args) => void
+  modalNumber: number
+  modalVisible: boolean = false
+
+  @ViewChild(ResetPasswordFormComponent) rpfc: ResetPasswordFormComponent
 
   visible = false
+  popoverVisible = false
 
-  constructor(
-    private store: Store<fromStore.State>,
-  ) { }
+  constructor() { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   showDrawer() {
     this.visible = true
   }
 
+  handleOnOk() {
+    this.modalVisible = false
+  }
+
+  handleCancel() {
+    this.modalVisible = false
+  }
+
+  handleOpenModal(index: number) {
+    this.modalNumber = index
+    this.modalVisible = true
+    this.popoverVisible = false
+  }
+
   close() {
     this.visible = false
   }
-
 }

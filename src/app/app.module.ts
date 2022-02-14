@@ -12,6 +12,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
+import { NzPopoverModule } from 'ng-zorro-antd/popover';
 import { NzProgressModule } from 'ng-zorro-antd/progress';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzResultModule } from 'ng-zorro-antd/result';
@@ -36,6 +37,7 @@ import { NzTabsModule } from 'ng-zorro-antd/tabs'
 import { NzCarouselModule } from 'ng-zorro-antd/carousel';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzCalendarModule } from 'ng-zorro-antd/calendar';
+import { NzDescriptionsModule } from 'ng-zorro-antd/descriptions';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { registerLocaleData } from '@angular/common';
 import zh from '@angular/common/locales/zh';
@@ -64,10 +66,14 @@ import { ResetPasswordFormComponent } from './components/form/reset-password-for
 import { ForgetPasswordFormComponent } from './components/form/forget-password-form/forget-password-form.component';
 import { ErrorLogHandler } from './error-log-handler';
 import { AgePipe } from './pipe/age.pipe';
+import { GroupFormComponent } from './components/form/group-form/group-form.component';
+import { GroupCardComponent } from './components/group-card/group-card.component';
+import { SoundDetailComponent } from './components/sound-detail/sound-detail.component';
 
 registerLocaleData(zh);
 
 const ngZorroModule = [
+  NzDescriptionsModule,
   NzProgressModule,
   NzDividerModule,
   NzCarouselModule,
@@ -93,7 +99,8 @@ const ngZorroModule = [
   NzRadioModule,
   NzGridModule,
   NzDrawerModule,
-  NzSkeletonModule
+  NzSkeletonModule,
+  NzPopoverModule
 ]
 
 @NgModule({
@@ -120,6 +127,9 @@ const ngZorroModule = [
     ResetPasswordFormComponent,
     ForgetPasswordFormComponent,
     AgePipe,
+    GroupFormComponent,
+    GroupCardComponent,
+    SoundDetailComponent,
   ],
   imports: [
     BrowserModule,

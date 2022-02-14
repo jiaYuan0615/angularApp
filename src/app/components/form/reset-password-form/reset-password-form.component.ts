@@ -8,7 +8,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 })
 export class ResetPasswordFormComponent implements OnInit {
   resetPasswordForm: FormGroup
-  @Input() isMobile: Boolean;
+  @Input() isMobile: boolean;
   @Input() onSumbit: (...args: any) => void;
   constructor(private fb: FormBuilder) { }
 

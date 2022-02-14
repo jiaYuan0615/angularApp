@@ -31,7 +31,7 @@ export const GetSpecifyGroupAction = createAction(
 
 export const PostGroupAction = createAction(
   postGroup,
-  props<{ payload: GroupCreate }>()
+  props<{ payload: any }>()
 )
 
 export const PutGroupAction = createAction(

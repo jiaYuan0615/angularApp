@@ -10,3 +10,9 @@ export interface MemberLogin {
   email: string;
   password: string;
 }
+
+export interface MemberInfo {
+  id: string;
+  email: string
+  name: string
+}

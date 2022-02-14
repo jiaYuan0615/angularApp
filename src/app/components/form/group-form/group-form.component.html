@@ -1,12 +1,12 @@
 <form
   nz-form
   nzLayout="horizontal"
-  [formGroup]="singerForm"
-  class="singer-form"
+  [formGroup]="groupForm"
+  class="group-form"
 >
   <nz-form-item>
-    <nz-form-label nzRequired nzFor="avatar">歌手圖片</nz-form-label>
-    <nz-form-control nzErrorTip="歌手圖片為必填">
+    <nz-form-label nzRequired nzFor="avatar">團體封面</nz-form-label>
+    <nz-form-control nzErrorTip="團體封面為必填">
       <input
         type="file"
         formControlName="avatar"
@@ -50,41 +50,42 @@
     </nz-form-control>
   </nz-form-item>
   <nz-form-item>
-    <nz-form-label nzRequired nzFor="name">歌手姓名</nz-form-label>
-    <nz-form-control nzErrorTip="歌手姓名為必填">
+    <nz-form-label nzRequired nzFor="name">團體名稱</nz-form-label>
+    <nz-form-control nzErrorTip="團體名稱為必填">
       <nz-input-group>
         <input
           type="text"
           nz-input
           formControlName="name"
-          placeholder="請輸入歌手姓名"
+          placeholder="請輸入團體名稱"
         />
       </nz-input-group>
     </nz-form-control>
   </nz-form-item>
   <nz-form-item>
-    <nz-form-label nzRequired nzFor="biography">歌手介紹</nz-form-label>
-    <nz-form-control nzErrorTip="歌手介紹為必填">
+    <nz-form-label nzRequired nzFor="biography">團體簡介</nz-form-label>
+    <nz-form-control nzErrorTip="團體簡介為必填">
       <nz-input-group>
         <textarea
-        nz-input
-        formControlName="biography"
-        placeholder="請輸入介紹">
+          nz-input
+          formControlName="biography"
+          placeholder="請輸入團體簡介"
+        >
       </textarea>
       </nz-input-group>
     </nz-form-control>
   </nz-form-item>
   <nz-form-item>
-    <nz-form-label nzRequired nzFor="groupId">所屬團體</nz-form-label>
-    <nz-form-control nzErrorTip="團體為必填">
+    <nz-form-label nzRequired nzFor="singerId">旗下藝人</nz-form-label>
+    <nz-form-control nzErrorTip="旗下藝人為必選">
       <nz-select
         nzShowSearch
-        formControlName="groupId"
+        formControlName="singerId"
         nzAllowClear
-        nzPlaceHolder="選擇團體"
+        nzPlaceHolder="選擇旗下藝人"
       >
         <nz-option
-          *ngFor="let v of groups"
+          *ngFor="let v of singers"
           [nzLabel]="v.name"
           [nzValue]="v.id"
         >
@@ -93,42 +94,37 @@
     </nz-form-control>
   </nz-form-item>
   <nz-form-item>
-    <nz-form-label nzRequired nzFor="nickname">歌手暱稱</nz-form-label>
-    <nz-form-control nzErrorTip="歌手暱稱為必填">
-      <nz-input-group>
-        <input
-          type="text"
-          nz-input
-          formControlName="nickname"
-          placeholder="歌手暱稱"
-        />
-      </nz-input-group>
+    <nz-form-label nzRequired nzFor="soundId">創作歌曲</nz-form-label>
+    <nz-form-control nzErrorTip="創作歌曲為必選">
+      <nz-select
+        nzShowSearch
+        formControlName="soundId"
+        nzAllowClear
+        nzPlaceHolder="選擇創作歌曲"
+      >
+        <nz-option
+          *ngFor="let v of sounds"
+          [nzLabel]="v.name"
+          [nzValue]="v.id"
+        >
+        </nz-option>
+      </nz-select>
     </nz-form-control>
   </nz-form-item>
   <nz-form-item>
-    <nz-form-label nzRequired nzFor="gender">歌手性別</nz-form-label>
-    <nz-form-control nzErrorTip="歌手性別為必填">
-      <nz-radio-group
-        formControlName="gender"
-      >
-        <label nz-radio nzValue="男">男</label>
-        <label nz-radio nzValue="女">女</label>
-      </nz-radio-group>
-  </nz-form-control>
-</nz-form-item>
-  <nz-form-item>
-    <nz-form-label nzRequired nzFor="birth">出生日期</nz-form-label>
-    <nz-form-control nzErrorTip="出生日期為必填">
+    <nz-form-label nzRequired nzFor="publishYear">出道日期</nz-form-label>
+    <nz-form-control nzErrorTip="出道日期為必選">
       <nz-date-picker
         style="width: 100%;"
-        formControlName="birth"
+        formControlName="publishYear"
+        [nzFormat]="'yyyy/MM'"
       >
     </nz-date-picker>
     </nz-form-control>
   </nz-form-item>
   <nz-form-item>
-    <nz-form-label nzRequired nzFor="country">歌手國籍</nz-form-label>
-    <nz-form-control nzErrorTip="歌手國籍為必填">
+    <nz-form-label nzRequired nzFor="country">團體國籍</nz-form-label>
+    <nz-form-control nzErrorTip="團體國籍為必選">
       <nz-select
         nzShowSearch
         formControlName="country"

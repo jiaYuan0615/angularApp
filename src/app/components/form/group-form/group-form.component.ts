@@ -1,57 +1,58 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { country, countries } from 'src/app/utils/country';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { countries, country } from 'src/app/utils/country';
 
 @Component({
-  selector: 'app-singer-form',
-  templateUrl: './singer-form.component.html',
-  styleUrls: ['./singer-form.component.less']
+  selector: 'app-group-form',
+  templateUrl: './group-form.component.html',
+  styleUrls: ['./group-form.component.less']
 })
-export class SingerFormComponent implements OnInit {
+export class GroupFormComponent implements OnInit {
 
-  @Input() groups: any;
-  countries: country[] = countries
-  singerForm: FormGroup
+  @Input() singers: any
+  @Input() sounds: any
+
+  groupForm: FormGroup
   thumbUrl: string = ''
   imageName: string = ''
   imageExtension: string = ''
   progress: number = 0;
   uploadFile: any
-
+  countries: country[] = countries
 
   constructor(
     private fb: FormBuilder
   ) { }
 
   ngOnInit(): void {
-    this.singerForm = this.fb.group({
+    this.groupForm = this.fb.group({
       name: [null, [Validators.required]],
-      biography: [null, [Validators.required]],
-      groupId: [null, [Validators.required]],
       avatar: [null, [Validators.required]],
-      nickname: [null, [Validators.required]],
-      gender: [null, [Validators.required]],
-      birth: [null, [Validators.required]],
+      publishYear: [null, [Validators.required]],
+      biography: [null, [Validators.required]],
       country: [null, [Validators.required]],
+      singerId: [[], [Validators.required]],
+      soundId: [[], [Validators.required]]
     })
   }
 
   submitForm() {
-    if (this.singerForm.valid) {
+    if (this.groupForm.valid) {
       return {
-        ...this.singerForm.value,
+        ...this.groupForm.value,
         avatar: this.uploadFile
       }
     } else {
-      for (const i in this.singerForm.controls) {
-        if (this.singerForm.controls.hasOwnProperty(i)) {
-          this.singerForm.controls[i].markAsDirty();
-          this.singerForm.controls[i].updateValueAndValidity();
+      for (const i in this.groupForm.controls) {
+        if (this.groupForm.controls.hasOwnProperty(i)) {
+          this.groupForm.controls[i].markAsDirty();
+          this.groupForm.controls[i].updateValueAndValidity();
         }
       }
       return false
     }
   }
+
 
   handleReset(): void {
     this.thumbUrl = '';
@@ -72,9 +73,5 @@ export class SingerFormComponent implements OnInit {
     previewImageReader.onprogress = (e) => this.progress = Math.round(e.loaded / e.total * 100);
     [this.imageName, this.imageExtension] = uploadFile.name.split('.')
     this.uploadFile = uploadFile
-    // 設定 FormControl 的兩種方式
-    // FormControl 只接受 string / number 型態
-    // this.singerForm.patchValue({ 'avatar': uploadFile })
-    // this.singerForm.controls['avatar'].setValue(uploadFile)
   }
 }

@@ -1,21 +1,13 @@
-<div style="margin: 10px;">
+<div class="insert">
   <button
     nz-button
     [nzType]="'primary'"
-    (click)="showModal()"
+    (click)="showModal('create','新增歌曲資訊')"
     >
     <i nz-icon nzType="plus" nzTheme="outline"></i>
     新增歌曲
 </button>
 </div>
-<nz-modal
-  [(nzVisible)]="isVisible"
-  nzTitle="新增歌曲資訊"
-  (nzOnCancel)="handleCancel()"
-  (nzOnOk)="handleOk()">
-  <ng-container>
-  </ng-container>
-</nz-modal>
 
 <ng-container  *ngIf="sounds$ | async as sounds; else empty">
   <div class="sound" nz-row>
@@ -25,7 +17,7 @@
       [nzLg]="24"
       [nzXs]="24"
       [sound]="v"
-      [cb]="callbackFn"
+      [showModal]="showModal"
       (clickEvent)="handler($event)"
     ></app-card>
 </div>
@@ -34,3 +26,20 @@
 <ng-template #empty>
   <nz-skeleton [nzActive]="true"></nz-skeleton>
 </ng-template>
+
+<nz-modal
+  [(nzVisible)]="isVisible"
+  nzTitle={{modalTitle}}
+  (nzOnCancel)="handleCancel()"
+  (nzOnOk)="handleOk()"
+>
+<ng-container *ngIf="modalType === 'create'">
+  <app-sound-form
+    [singers]="singers$ | async"
+  >
+  </app-sound-form>
+</ng-container>
+<ng-container *ngIf="modalType ==='detail'">
+  <app-sound-detail [sound]="sound"></app-sound-detail>
+</ng-container>
+</nz-modal>

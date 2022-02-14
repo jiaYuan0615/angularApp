@@ -1,4 +1,4 @@
-<div style="margin: 10px;">
+<div class="insert">
   <button
     nz-button
     [nzType]="'primary'"
@@ -12,15 +12,22 @@
   [(nzVisible)]="isVisible"
   nzTitle="新增團體資訊"
   (nzOnCancel)="handleCancel()"
-  (nzOnOk)="handleOk()">
-  <ng-container>
-  </ng-container>
+  (nzOnOk)="handleOk()"
+  >
+  <app-group-form
+    [singers]="singers$ | async"
+    [sounds]="sounds$ | async"
+  ></app-group-form>
 </nz-modal>
 <ng-container *ngIf="groups$ | async as groups; else empty">
-  <ul *ngFor="let v of groups">
-    <li>{{v.id}}</li>
-    <li>{{v.name}}</li>
-  </ul>
+  <div class="singer" nz-row>
+    <app-group-card
+      *ngFor="let v of groups"
+      nz-col
+      [goToRoute]="goToRoute"
+      [group]="v"
+    ></app-group-card>
+  </div>
 </ng-container>
 
 <ng-template #empty>

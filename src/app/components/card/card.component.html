@@ -6,14 +6,14 @@
     </div>
     <div>
       <p>發行年份：{{sound.publishYear}}</p>
-      <p>電影主題曲：{{sound.ost}}</p>
+      <p>電影原聲帶：{{sound.ost}}</p>
     </div>
     <button
         nz-button
         class="search"
         nzType="primary"
         nzShape="circle"
-        (click)="soundHandler()"
+        (click)="showModal('detail','歌曲詳細資訊',sound)"
       >
         <i nz-icon nzType="search"></i>
       </button>

@@ -30,7 +30,6 @@ export class SingerService {
     const options = {
       headers: new HttpHeaders({
         Authorization: `bearer ${getToken()}`,
-        // 'Content-Type': 'multipart/form-data'
       })
     }
     return this.request.post<any>("singer", payload, options);
