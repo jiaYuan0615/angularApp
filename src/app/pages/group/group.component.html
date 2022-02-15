@@ -2,23 +2,13 @@
   <button
     nz-button
     [nzType]="'primary'"
-    (click)="showModal()"
+    (click)="showModal('create','新增團體資訊')"
     >
     <i nz-icon nzType="plus" nzTheme="outline"></i>
     新增團體
 </button>
 </div>
-<nz-modal
-  [(nzVisible)]="isVisible"
-  nzTitle="新增團體資訊"
-  (nzOnCancel)="handleCancel()"
-  (nzOnOk)="handleOk()"
-  >
-  <app-group-form
-    [singers]="singers$ | async"
-    [sounds]="sounds$ | async"
-  ></app-group-form>
-</nz-modal>
+
 <ng-container *ngIf="groups$ | async as groups; else empty">
   <div class="singer" nz-row>
     <app-group-card
@@ -26,6 +16,7 @@
       nz-col
       [goToRoute]="goToRoute"
       [group]="v"
+      [showModal]="showModal"
     ></app-group-card>
   </div>
 </ng-container>
@@ -33,3 +24,23 @@
 <ng-template #empty>
   <app-loading></app-loading>
 </ng-template>
+
+<nz-modal
+  [(nzVisible)]="isVisible"
+  nzTitle={{modalTitle}}
+  (nzOnCancel)="handleCancel()"
+  (nzOnOk)="handleOk()"
+  >
+
+  <ng-container *ngIf="modalType === 'create'">
+      <app-group-form
+        [singers]="singers$ | async"
+        [sounds]="sounds$ | async"
+      ></app-group-form>
+  </ng-container>
+  <ng-container *ngIf="modalType === 'detail'">
+    <app-group-detail
+      [group]="group"
+    ></app-group-detail>
+  </ng-container>
+</nz-modal>

@@ -6,6 +6,7 @@ const getSoundSuccess = '[sound] getSoundSuccess';
 const getSoundFail = '[sound] getSoundFail';
 const getSpecifySound = '[sound] getSpecifySound';
 const postSound = '[sound] postSound';
+const postSoundFail = '[sound] postSoundFail';
 const putSound = '[sound] putSound';
 const deleteSound = '[sound] deleteSound';
 
@@ -30,7 +31,12 @@ export const GetSpecifySoundAction = createAction(
 
 export const PostSoundAction = createAction(
   postSound,
-  props<{ payload: SoundCreate }>()
+  props<{ payload: any, callback?: (...args) => void }>()
+)
+
+export const PostSoundFailAction = createAction(
+  postSoundFail,
+  props<{ payload: string }>()
 )
 
 export const PutSoundAction = createAction(

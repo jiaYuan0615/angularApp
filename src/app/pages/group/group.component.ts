@@ -15,10 +15,13 @@ import { GoToRouteAction, PostGroupAction } from '../../store';
   styleUrls: ['./group.component.less']
 })
 export class GroupComponent implements OnInit {
-  isVisible = false;
+  isVisible: boolean = false;
+  modalTitle: string
+  modalType: string;
   groups$: Observable<Group[]>
   singers$: Observable<Singer[]>
   sounds$: Observable<Sound[]>
+  group: any;
 
 
   @ViewChild(GroupFormComponent) gfc: GroupFormComponent
@@ -36,8 +39,13 @@ export class GroupComponent implements OnInit {
     this.sounds$ = this.store.select(fromStore.getSoundSelector);
   }
 
-  showModal(): void {
+  showModal = (type: string, title: string, value?) => {
+    this.modalType = type;
+    this.modalTitle = title;
     this.isVisible = true;
+
+    if (!!value) this.group = value
+
   }
 
   callback() {
@@ -47,20 +55,22 @@ export class GroupComponent implements OnInit {
   }
 
   handleOk(): void {
-    const value = this.gfc.submitForm()
-    if (!!value) {
-      this.onSubmit(value, this.callback())
-    } else {
-      this.isVisible = true
+    if (this.modalType === 'create') {
+      const value = this.gfc.submitForm()
+      if (!!value) {
+        this.onSubmit(value, this.callback())
+      } else {
+        this.isVisible = true
+      }
     }
 
   }
 
   handleCancel(): void {
-    this.callback()
+    this.isVisible = false;
   }
 
-  onSubmit = (value: any, callback: any) => {
+  onSubmit = (value: any, callback?: any) => {
     const payload = new FormData();
     Object.keys(value).map(key => {
       if (key === 'publishYear') {
@@ -70,7 +80,7 @@ export class GroupComponent implements OnInit {
       }
     })
     this.store.dispatch(PostGroupAction({ payload }))
-    callback()
+    if (callback) callback()
   }
 
   goToRoute = (path: string[]) => {

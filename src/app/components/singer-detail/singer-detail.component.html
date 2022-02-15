@@ -1,0 +1,24 @@
+<nz-descriptions [nzColon]="false" nzTitle={{singer.name}}>
+  <nz-descriptions-item [nzSpan]="3">
+    <nz-avatar
+      [nzSize]="64"
+      [nzSrc]="singer.avatar"
+    >
+    </nz-avatar>
+  </nz-descriptions-item>
+
+  <nz-descriptions-item nzTitle="姓名：">{{singer.name }}</nz-descriptions-item>
+  <nz-descriptions-item nzTitle="暱稱：">{{singer.nickname}}</nz-descriptions-item>
+  <nz-descriptions-item nzTitle="性別：">{{singer.gender}}性</nz-descriptions-item>
+
+  <nz-descriptions-item nzTitle="生日：">{{singer.birth | date:'yyyy-MM-dd'}}</nz-descriptions-item>
+  <nz-descriptions-item nzTitle="年齡：">{{singer.birth | date:'yyyy' | age}}</nz-descriptions-item>
+  <nz-descriptions-item nzTitle="國籍：">{{singer.country}}</nz-descriptions-item>
+  <nz-descriptions-item [nzSpan]="3" nzTitle="所屬團體：">{{singer.groups[0].name}}</nz-descriptions-item>
+
+  <nz-descriptions-item [nzSpan]="3" nzTitle="歌手介紹："></nz-descriptions-item>
+  <nz-descriptions-item [nzSpan]="3">
+    <div [innerHtml]="singer.biography"></div>
+  </nz-descriptions-item>
+</nz-descriptions>
+

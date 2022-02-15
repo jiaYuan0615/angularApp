@@ -8,13 +8,9 @@ import { Component, Input, OnInit } from '@angular/core';
 export class GroupCardComponent implements OnInit {
 
   @Input() group;
-  @Input() goToRoute: (...args: any) => void;
+  @Input() showModal: (...args: any) => void;
   constructor() { }
 
   ngOnInit(): void {
-  }
-
-  groupHandler(id: string) {
-    this.goToRoute(['group', id])
   }
 }

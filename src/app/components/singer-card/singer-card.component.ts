@@ -9,6 +9,7 @@ export class SingerCardComponent implements OnInit {
 
   @Input() singer;
   @Input() goToRoute: (...args: any) => void;
+  @Input() showModal: (...args) => void;
   @Output('clickEvent') click = new EventEmitter();
 
   constructor() { }
@@ -16,8 +17,5 @@ export class SingerCardComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  singerHandler(id: string) {
-    this.goToRoute(['singer', id]);
-  }
 
 }

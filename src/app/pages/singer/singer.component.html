@@ -2,22 +2,12 @@
   <button
     nz-button
     [nzType]="'primary'"
-    (click)="showModal()"
+    (click)="showModal('create','新增歌手資訊')"
     >
     <i nz-icon nzType="plus" nzTheme="outline"></i>
     新增歌手
 </button>
 </div>
-<nz-modal
-  [(nzVisible)]="isVisible"
-  nzTitle="新增歌手資訊"
-  (nzOnCancel)="handleCancel()"
-  (nzOnOk)="handleOk()"
->
-  <app-singer-form
-    [groups]="groups$ | async"
-  ></app-singer-form>
-</nz-modal>
 
 <ng-container *ngIf="singers$ | async as singers; else empty">
   <div class="singer" nz-row>
@@ -28,7 +18,7 @@
         [nzXs]="24"
         [singer]="v"
         [goToRoute]="goToRoute"
-        (clickEvent)="singerHandler($event)"
+        [showModal]="showModal"
       ></app-singer-card>
   </div>
   <app-pagination
@@ -39,3 +29,21 @@
 <ng-template #empty>
   <app-loading></app-loading>
 </ng-template>
+
+<nz-modal
+  [(nzVisible)]="isVisible"
+  nzTitle={{modalTitle}}
+  (nzOnCancel)="handleCancel()"
+  (nzOnOk)="handleOk()"
+>
+  <ng-container *ngIf="modalType === 'create'">
+    <app-singer-form
+      [groups]="groups$ | async"
+    ></app-singer-form>
+  </ng-container>
+  <ng-container *ngIf="modalType === 'detail'">
+    <app-singer-detail
+      [singer]="singer"
+    ></app-singer-detail>
+  </ng-container>
+</nz-modal>

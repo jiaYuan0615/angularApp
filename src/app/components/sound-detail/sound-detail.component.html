@@ -1,8 +1,12 @@
 <nz-descriptions [nzColon]="false" nzTitle={{sound.name}}>
-  <nz-descriptions-item nzTitle="演唱歌手：">{{sound.cover}}</nz-descriptions-item>
-  <nz-descriptions-item [nzSpan]="2" nzTitle="發行年份：">{{sound.publishYear}}</nz-descriptions-item>
-  <nz-descriptions-item nzTitle="是否為翻唱：">{{sound.isCover ? '是':'否'}}</nz-descriptions-item>
-  <nz-descriptions-item [nzSpan]="2" nzTitle="建立時間：">{{sound.createdAt | date:'yyyy-MM-dd'}}</nz-descriptions-item>
+  <nz-descriptions-item [nzSpan]="2" nzTitle="演唱歌手：">{{sound.cover }}</nz-descriptions-item>
+  <nz-descriptions-item nzTitle="發行年份：">{{sound.publishYear}}</nz-descriptions-item>
+
+  <nz-descriptions-item [nzSpan]="2" nzTitle="電影原聲帶：">{{sound.ost}}</nz-descriptions-item>
+  <nz-descriptions-item nzTitle="是否翻唱：">{{sound.isCover ? '是':'否'}}</nz-descriptions-item>
+
+  <nz-descriptions-item [nzSpan]="3" nzTitle="建立時間：">{{sound.createdAt | date:'yyyy-MM-dd hh:mm:ss'}}</nz-descriptions-item>
+
   <nz-descriptions-item [nzSpan]="3" nzTitle="歌詞："></nz-descriptions-item>
   <nz-descriptions-item [nzSpan]="3">
     <div [innerHtml]="sound.lyrics"></div>

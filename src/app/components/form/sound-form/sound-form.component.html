@@ -55,24 +55,34 @@
         <nz-option
           *ngFor="let v of singers"
           [nzLabel]="v.name"
-          [nzValue]="v.id"
+          [nzValue]="v.name"
         ></nz-option>
       </nz-select>
   </nz-form-control>
   </nz-form-item>
   <nz-form-item>
-    <nz-form-label nzFor="OST">電影原聲帶</nz-form-label>
+    <nz-form-label nzFor="ost">電影原聲帶</nz-form-label>
     <nz-form-control>
       <nz-input-group>
         <input
           type="text"
           nz-input
-          formControlName="OST"
+          formControlName="ost"
           placeholder="請輸入電影原聲帶"
         />
       </nz-input-group>
     </nz-form-control>
   </nz-form-item>
-
-
+  <nz-form-item>
+    <nz-form-label nzRequired nzFor="isCover">是否為翻唱</nz-form-label>
+    <nz-form-control nzErrorTip="是否為翻唱為必選">
+      <nz-radio-group
+        formControlName="isCover"
+      >
+        <label nz-radio nzValue="true">是</label>
+        <label nz-radio nzValue="false">否</label>
+      </nz-radio-group>
+  </nz-form-control>
+</nz-form-item>
 </form>
+

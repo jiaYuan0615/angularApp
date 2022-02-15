@@ -58,7 +58,6 @@ import { SingerFormComponent } from './components/form/singer-form/singer-form.c
 import { StoreModule } from '@ngrx/store';
 import * as fromStore from './store'
 import { EffectsModule } from '@ngrx/effects';
-import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { environment } from 'src/environments/environment';
 import { RouterStateSerializer, StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -69,6 +68,8 @@ import { AgePipe } from './pipe/age.pipe';
 import { GroupFormComponent } from './components/form/group-form/group-form.component';
 import { GroupCardComponent } from './components/group-card/group-card.component';
 import { SoundDetailComponent } from './components/sound-detail/sound-detail.component';
+import { SingerDetailComponent } from './components/singer-detail/singer-detail.component';
+import { GroupDetailComponent } from './components/group-detail/group-detail.component';
 
 registerLocaleData(zh);
 
@@ -130,6 +131,8 @@ const ngZorroModule = [
     GroupFormComponent,
     GroupCardComponent,
     SoundDetailComponent,
+    SingerDetailComponent,
+    GroupDetailComponent,
   ],
   imports: [
     BrowserModule,
@@ -138,7 +141,6 @@ const ngZorroModule = [
     ReactiveFormsModule,
     ...ngZorroModule,
     FormsModule,
-    CKEditorModule,
     BrowserAnimationsModule,
     StoreModule.forRoot(fromStore.reducers),
     EffectsModule.forRoot(fromStore.effects),

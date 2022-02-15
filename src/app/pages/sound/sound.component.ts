@@ -5,7 +5,6 @@ import { SoundFormComponent } from 'src/app/components/form/sound-form/sound-for
 import { Singer } from 'src/app/interface/singer';
 import { Sound } from 'src/app/interface/sound';
 import * as fromStore from '../../store';
-
 @Component({
   selector: 'app-sound',
   templateUrl: './sound.component.html',
@@ -67,7 +66,7 @@ export class SoundComponent implements OnInit {
   }
 
   handleCancel(): void {
-    this.callback()
+    this.isVisible = false;
   }
 
   goToRoute = (path: string[]) => {

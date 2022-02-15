@@ -18,6 +18,9 @@ export class SingerComponent implements OnInit {
   isVisible = false;
   singers$: Observable<Singer[]>
   groups$: Observable<Group[]>
+  singer: Singer;
+  modalTitle: string;
+  modalType: string;
 
   @ViewChild(SingerFormComponent) sfc: SingerFormComponent
 
@@ -32,12 +35,11 @@ export class SingerComponent implements OnInit {
     this.groups$ = this.store.select(fromStore.getGroupSelector);
   }
 
-  singerHandler(singer: any) {
-    console.log(singer);
-  }
-
-  showModal(): void {
+  showModal = (type: string, title: string, value?) => {
+    this.modalType = type;
+    this.modalTitle = title;
     this.isVisible = true;
+    if (!!value) this.singer = value
   }
 
   onSubmit = (value: any, callback: any) => {
@@ -51,26 +53,28 @@ export class SingerComponent implements OnInit {
     })
     // payload.forEach((value, key) => console.log(`${key}:${value}`))
     this.store.dispatch(PostSingerAction({ payload }))
-    callback()
+    if (callback) callback()
   }
 
   callback(): void {
-    this.sfc.singerForm.reset();
     this.sfc.handleReset()
+    this.sfc.singerForm.reset();
     this.isVisible = false;
   }
 
   handleOk(): void {
-    const value = this.sfc.submitForm()
-    if (!!value) {
-      this.onSubmit(value, this.callback())
-    } else {
-      this.isVisible = true
+    if (this.modalType === 'create') {
+      const value = this.sfc.submitForm()
+      if (!!value) {
+        this.onSubmit(value, this.callback())
+      } else {
+        this.isVisible = true
+      }
     }
   }
 
   handleCancel(): void {
-    this.callback()
+    this.isVisible = false;
   }
 
   goToRoute = (path: string[]) => {

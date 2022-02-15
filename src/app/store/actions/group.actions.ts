@@ -7,6 +7,7 @@ const getGroupSuccess = '[group] getGroupSuccess';
 const getGroupFail = '[group] getGroupFail';
 const getSpecifyGroup = '[group] getSpecifyGroup';
 const postGroup = '[group] postGroup';
+const postGroupFail = '[group] postGroupFail';
 const putGroup = '[group] putGroup';
 const deleteGroup = '[group] deleteGroup';
 
@@ -32,6 +33,11 @@ export const GetSpecifyGroupAction = createAction(
 export const PostGroupAction = createAction(
   postGroup,
   props<{ payload: any }>()
+)
+
+export const PostGroupFailAction = createAction(
+  postGroupFail,
+  props<{ payload: string }>()
 )
 
 export const PutGroupAction = createAction(

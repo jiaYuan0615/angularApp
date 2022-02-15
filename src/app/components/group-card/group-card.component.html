@@ -1,13 +1,21 @@
-<div class="card">
+<div class="group">
   <div class="groupInfo">
-    <div style="margin-right: 10px;">{{group.name}}</div>
+    <nz-avatar
+      [nzSize]="64"
+      [nzSrc]="group.avatar"
+    ></nz-avatar>
+    <div>
+      <h3>{{group.name}}</h3>
+      <p>出道年份：{{group.publishYear}}</p>
+    </div>
     <button
-      nz-button
-      nzType="primary"
-      nzShape="circle"
-      (click)="groupHandler(group.id)"
-    >
-      <i nz-icon nzType="search"></i>
-    </button>
+        nz-button
+        class="search"
+        nzType="primary"
+        nzShape="circle"
+        (click)="showModal('detail','團體詳細資訊',group)"
+      >
+        <i nz-icon nzType="search"></i>
+      </button>
   </div>
 </div>

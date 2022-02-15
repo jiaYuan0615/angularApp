@@ -1,5 +1,7 @@
+import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { GroupCreate, Groups, GroupUpdate } from '../interface/group';
+import { getToken } from '../utils/authorize';
 import { Request } from '../utils/request';
 
 
@@ -16,8 +18,12 @@ export class GroupService {
     return this.request.get<Groups>("group");
   }
 
-  postGroup(payload: GroupCreate) {
-    return this.request.post<GroupCreate>("group", payload)
+  postGroup(payload: any) {
+    return this.request.post<any>("group", payload, {
+      headers: new HttpHeaders({
+        Authorization: `bearer ${getToken()}`,
+      })
+    })
   }
 
   putGroup(id: string, payload: GroupUpdate) {

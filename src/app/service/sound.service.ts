@@ -32,9 +32,9 @@ export class SoundService {
   postSound(payload: Sound) {
     const options = {
       headers: new HttpHeaders({
-        Authorization: `bearer ${getToken()}}`,
+        Authorization: `bearer ${getToken()}`,
       })
     }
-    return this.request.post<Sound>("sound", payload, options);
+    return this.request.post<any>("sound", payload, options);
   };
 }

@@ -24,7 +24,10 @@
 </ng-container>
 
 <ng-template #empty>
-  <nz-skeleton [nzActive]="true"></nz-skeleton>
+  <nz-skeleton
+    [nzActive]="true"
+    *ngFor="let number of [1,2,3]"
+  ></nz-skeleton>
 </ng-template>
 
 <nz-modal
@@ -39,7 +42,7 @@
   >
   </app-sound-form>
 </ng-container>
-<ng-container *ngIf="modalType ==='detail'">
+<ng-container *ngIf="modalType === 'detail'">
   <app-sound-detail [sound]="sound"></app-sound-detail>
 </ng-container>
 </nz-modal>

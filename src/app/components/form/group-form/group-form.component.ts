@@ -31,8 +31,8 @@ export class GroupFormComponent implements OnInit {
       publishYear: [null, [Validators.required]],
       biography: [null, [Validators.required]],
       country: [null, [Validators.required]],
-      singerId: [[], [Validators.required]],
-      soundId: [[], [Validators.required]]
+      singerId: [null, [Validators.required]],
+      soundId: [null, [Validators.required]]
     })
   }
 
@@ -40,7 +40,9 @@ export class GroupFormComponent implements OnInit {
     if (this.groupForm.valid) {
       return {
         ...this.groupForm.value,
-        avatar: this.uploadFile
+        avatar: this.uploadFile,
+        singerId: JSON.stringify(this.groupForm.controls['singerId'].value),
+        soundId: JSON.stringify(this.groupForm.controls['soundId'].value)
       }
     } else {
       for (const i in this.groupForm.controls) {
