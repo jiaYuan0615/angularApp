@@ -1,0 +1,126 @@
+<form
+  nz-form
+  nzLayout="horizontal"
+  [formGroup]="profileForm"
+  class="profile-form"
+>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="5" nzRequired nzFor="avatar">會員頭貼</nz-form-label>
+    <nz-form-control nzErrorTip="會員頭貼為必填">
+      <input
+        type="file"
+        formControlName="avatar"
+        style="display: none;"
+        accept="image/jpeg,image/png"
+        #upload
+        (change)="handleChange($event)"
+      >
+      <button
+        nz-button
+        nzType="upload"
+        (click)="upload.click()"
+      >
+        <i nz-icon nzType="upload"></i>
+        上傳圖片
+      </button>
+      <ng-container *ngIf="showPreviousAvatar">
+        <div class="upload avatar">
+          <img
+            width="100"
+            src={{memberInfo.avatar}}
+            alt={{memberInfo.name}}
+        />
+        </div>
+      </ng-container>
+      <ng-container *ngIf="thumbUrl ">
+        <div class="upload">
+          <img
+            width="100"
+            src={{thumbUrl}}
+            alt={{imageName}}
+        />
+          <div>
+            {{imageName | slice : 0: 10}}.{{imageExtension}}
+          </div>
+          <button
+            nz-button
+            style="border: 0;"
+            (click)="handleRemove($event)"
+          >
+            <i nz-icon nzType="delete"></i>
+          </button>
+        </div>
+        <nz-progress
+          [nzPercent]="progress"
+          nzStrokeColor="#1890ff"
+        >
+        </nz-progress>
+      </ng-container>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="5" nzRequired nzFor="name">會員姓名</nz-form-label>
+    <nz-form-control nzErrorTip="會員姓名為必填">
+      <nz-input-group>
+        <input
+          type="text"
+          nz-input
+          formControlName="name"
+          placeholder="請輸入會員姓名"
+        />
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="5" nzFor="gender">會員性別</nz-form-label>
+    <nz-form-control>
+      <nz-input-group>
+        <input
+          type="text"
+          [disabled]="true"
+          nz-input
+          formControlName="gender"
+        />
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="5" nzFor="email_verified">信箱驗證時間</nz-form-label>
+    <nz-form-control>
+      <nz-input-group>
+        <input
+          type="text"
+          [disabled]="true"
+          nz-input
+          formControlName="email_verified"
+        />
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="5" nzFor="createdAt">會員建立時間</nz-form-label>
+    <nz-form-control>
+      <nz-input-group>
+        <input
+          type="text"
+          [disabled]="true"
+          nz-input
+          formControlName="createdAt"
+        />
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="5" nzFor="updatedAt">上次修改時間</nz-form-label>
+    <nz-form-control>
+      <nz-input-group>
+        <input
+          type="text"
+          nz-input
+          [disabled]="true"
+          formControlName="updatedAt"
+        />
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+</form>

@@ -1,0 +1,39 @@
+import { Injectable } from "@angular/core";
+import { Request } from '../utils/request';
+import { getToken } from '../utils/authorize';
+import { HttpHeaders } from "@angular/common/http";
+
+@Injectable({
+  providedIn: 'root'
+})
+
+export class CollectService {
+  constructor(
+    private request: Request,
+  ) { }
+
+  getCollection() {
+    return this.request.get<any>("collection", {
+      headers: new HttpHeaders({
+        Authorization: `bearer ${getToken()}`,
+      })
+    })
+  }
+
+  postCollection(payload: any) {
+    return this.request.post<any>("collection", payload, {
+      headers: new HttpHeaders({
+        Authorization: `bearer ${getToken()}`,
+      })
+    })
+  }
+
+  postItemToCollection(payload: any) {
+    return this.request.post<any>("collection/item", payload, {
+      headers: new HttpHeaders({
+        Authorization: `bearer ${getToken()}`,
+      })
+    })
+  }
+
+}

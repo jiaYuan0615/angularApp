@@ -70,6 +70,8 @@ import { GroupCardComponent } from './components/group-card/group-card.component
 import { SoundDetailComponent } from './components/sound-detail/sound-detail.component';
 import { SingerDetailComponent } from './components/singer-detail/singer-detail.component';
 import { GroupDetailComponent } from './components/group-detail/group-detail.component';
+import { UpdateProfileFormComponent } from './components/form/update-profile-form/update-profile-form.component';
+import { CollectButtonComponent } from './components/collect-button/collect-button.component';
 
 registerLocaleData(zh);
 
@@ -133,6 +135,8 @@ const ngZorroModule = [
     SoundDetailComponent,
     SingerDetailComponent,
     GroupDetailComponent,
+    UpdateProfileFormComponent,
+    CollectButtonComponent,
   ],
   imports: [
     BrowserModule,

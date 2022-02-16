@@ -22,9 +22,11 @@ export class MemberEffects {
     ofType(actions.GetMemberAction),
     switchMap(() => {
       return this.memberService.getMemberInfo().pipe(
-        map((member) => actions.GetMemberSuccessAction({ payload: member })),
+        map(({ member }) => {
+          return actions.GetMemberSuccessAction({ payload: member })
+        }),
         catchError(({ error }) => {
-          this.message.error(error.message)
+          this.message.warning('登入逾時，請重新登入')
           return of(actions.GoToRouteAction({ payload: { path: ['/auth/login'] } }))
         })
       )

@@ -4,7 +4,6 @@ import *  as actions from '../actions';
 
 export interface GroupState {
   groups: Group[];
-
 }
 
 export const initialState: GroupState = {

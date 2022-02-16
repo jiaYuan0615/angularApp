@@ -4,6 +4,7 @@ import * as router from './router.reducers';
 import * as sound from './sound.reducers';
 import * as singer from './singer.reducers'
 import * as group from './group.reducers';
+import * as collection from './collection.reducers';
 // reducer 是專門用來存取資料的
 
 export interface State {
@@ -11,7 +12,8 @@ export interface State {
   router: router.RouterState,
   sound: sound.SoundState,
   singer: singer.SingerState,
-  group: group.GroupState
+  group: group.GroupState,
+  collection: collection.CollectionState,
 }
 
 
@@ -21,6 +23,7 @@ export const reducers: ActionReducerMap<State> = {
   sound: sound.soundReducer,
   singer: singer.singerReducer,
   group: group.groupReducer,
+  collection: collection.collectionReducer
 }
 
 export { CustomSerializer } from './router.reducers';

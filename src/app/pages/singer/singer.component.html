@@ -9,14 +9,15 @@
 </button>
 </div>
 
-<ng-container *ngIf="singers$ | async as singers; else empty">
+<ng-container *ngIf="items$ | async as items; else empty">
   <div class="singer" nz-row>
       <app-singer-card
-        *ngFor="let v of singers"
+        *ngFor="let v of items.singer"
         nz-col
         [nzLg]="24"
         [nzXs]="24"
         [singer]="v"
+        [collection]="items.collection"
         [goToRoute]="goToRoute"
         [showModal]="showModal"
       ></app-singer-card>

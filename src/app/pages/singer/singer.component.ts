@@ -3,11 +3,13 @@ import { Store } from '@ngrx/store';
 import { Singer } from 'src/app/interface/singer';
 import * as fromStore from '../../store';
 import { GoToRouteAction } from '../../store/actions/router.actions'
-import { Observable } from 'rxjs';
+import { Observable, combineLatest, zip } from 'rxjs';
 import { Group } from 'src/app/interface/group';
 import { SingerFormComponent } from 'src/app/components/form/singer-form/singer-form.component';
 import { PostSingerAction } from '../../store';
 import * as moment from 'moment';
+import { Collection } from 'src/app/interface/collection';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-singer',
@@ -18,6 +20,8 @@ export class SingerComponent implements OnInit {
   isVisible = false;
   singers$: Observable<Singer[]>
   groups$: Observable<Group[]>
+  collections$: Observable<Collection[]>
+  items$: Observable<any>
   singer: Singer;
   modalTitle: string;
   modalType: string;
@@ -30,9 +34,16 @@ export class SingerComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(fromStore.GetSingerAction());
+    this.store.dispatch(fromStore.GetCollectionAction());
     this.store.dispatch(fromStore.GetGroupAction());
+
     this.singers$ = this.store.select(fromStore.getSingerSelector);
+    this.collections$ = this.store.select(fromStore.getCollectionSelector);
     this.groups$ = this.store.select(fromStore.getGroupSelector);
+
+    this.items$ = combineLatest([this.singers$, this.collections$]).pipe(
+      map(([singer, collection]) => ({ singer, collection }))
+    )
   }
 
   showModal = (type: string, title: string, value?) => {

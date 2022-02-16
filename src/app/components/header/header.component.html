@@ -11,25 +11,27 @@
       [nzVisible]="visible"
       nzPlacement="right"
       nzTitle="歌曲推薦"
-      (nzOnClose)="close()"
+      (nzOnClose)="closeDrawer()"
     >
     <ul nz-menu nzTheme="light" nzMode="inline">
-      <li nz-menu-item (click)="goToRoute(['/'],close())">回首頁</li>
-      <li nz-menu-item (click)="goToRoute(['sound'],close())">歌曲列表</li>
-      <li nz-menu-item (click)="goToRoute(['singer'],close())">歌手列表</li>
-      <li nz-menu-item (click)="goToRoute(['group'],close())">團體列表</li>
+      <li nz-menu-item (click)="mobileListHandler(['/'])">回首頁</li>
+      <li nz-menu-item (click)="mobileListHandler(['sound'])">歌曲列表</li>
+      <li nz-menu-item (click)="mobileListHandler(['singer'])">歌手列表</li>
+      <li nz-menu-item (click)="mobileListHandler(['group'])">團體列表</li>
+      <li nz-menu-item (click)="handleOpenModal('reset','變更密碼',closeDrawer())">修改密碼</li>
+      <li nz-menu-item (click)="handleOpenModal('profile','修改個人資訊',closeDrawer())">修改個人資訊</li>
+      <li nz-menu-item (click)="mobileListHandler(['auth','login'])">登出</li>
     </ul>
     </nz-drawer>
   </ng-container>
 </nz-header>
-
 
 <ng-template #web>
   <div style="float: right;">
     <nz-avatar
       nzSize="large"
       class="memberInfo"
-      nzText="Y"
+      nzText="{{memberInfo.name | slice:0:1 }}"
       nz-popover
       nzPopoverTrigger="click"
       [(nzPopoverVisible)]="popoverVisible"
@@ -37,8 +39,8 @@
     ></nz-avatar>
     <ng-template #extraSetting>
       <ul nz-menu >
-        <li nz-menu-item (click)="handleOpenModal(1)"><i nz-icon nzType="edit"></i>修改密碼</li>
-        <li nz-menu-item (click)="handleOpenModal(2)"><i nz-icon nzType="user"></i>修改個人資訊</li>
+        <li nz-menu-item (click)="handleOpenModal('reset','變更密碼')"><i nz-icon nzType="edit"></i>修改密碼</li>
+        <li nz-menu-item (click)="handleOpenModal('profile','修改個人資訊')"><i nz-icon nzType="user"></i>修改個人資訊</li>
         <li nz-menu-item (click)="logout()"><i nz-icon nzType="logout"></i>登出</li>
       </ul>
     </ng-template>
@@ -50,20 +52,23 @@
   </ul>
 </ng-template>
 
-  <container-element [ngSwitch]="modalNumber">
+  <!-- 共用 modal 區 -->
     <nz-modal
       [(nzVisible)]="modalVisible"
+      nzTitle={{modalTitle}}
       (nzOnCancel)="handleCancel()"
       (nzOnOk)="handleOnOk()"
       nzWidth="500px"
     >
-    <some-element *ngSwitchCase="1">
-        <app-reset-password-form
-          [isMobile]="isMobile"
-        ></app-reset-password-form>
-    </some-element>
-    <some-element *ngSwitchCase="2">
-      修改個人資訊
-    </some-element>
+    <ng-container *ngIf="modalType === 'reset'">
+      <app-reset-password-form
+        [isMobile]="isMobile"
+      ></app-reset-password-form>
+    </ng-container>
+    <ng-container *ngIf="modalType === 'profile'">
+      <app-update-profile-form
+        [memberInfo]="memberInfo"
+      >
+      </app-update-profile-form>
+    </ng-container>
   </nz-modal>
-  </container-element>

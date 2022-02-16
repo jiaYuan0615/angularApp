@@ -1,7 +1,8 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import * as fromStore from '../../store';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, pipe } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
 import { GetMemberLogout } from '../../store';
 
 @Component({
@@ -20,6 +21,7 @@ export class GlobalComponent implements OnInit {
   ngOnInit(): void {
     this.store.dispatch(fromStore.GetMemberAction());
     this.memberInfo$ = this.store.select(fromStore.getMemberSelector);
+
   }
 
   @HostListener('window:resize', ['$event'])
