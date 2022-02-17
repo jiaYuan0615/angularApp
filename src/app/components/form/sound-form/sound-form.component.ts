@@ -12,6 +12,7 @@ import { environment } from 'src/environments/environment';
 export class SoundFormComponent implements OnInit {
 
   @Input() singers: any
+  @Input() sound: any
   soundForm: FormGroup
 
   constructor(
@@ -19,14 +20,26 @@ export class SoundFormComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.soundForm = this.fb.group({
-      name: [null, [Validators.required]],
-      lyrics: [null, [Validators.required]],
-      publishYear: [null, [Validators.required]],
-      cover: [null, [Validators.required]],
-      ost: [null],
-      isCover: [null, [Validators.required]],
-    })
+    if (this.sound) {
+      const item = {}
+      Object.keys(this.sound).map((v) => {
+        if (v === 'isCover') {
+          item[v] = [this.sound[v] ? 'true' : 'false', Validators.required]
+        } else {
+          item[v] = [this.sound[v], Validators.required]
+        }
+      })
+      this.soundForm = this.fb.group(item)
+    } else {
+      this.soundForm = this.fb.group({
+        name: [null, [Validators.required]],
+        lyrics: [null, [Validators.required]],
+        publishYear: [null, [Validators.required]],
+        cover: [null, [Validators.required]],
+        ost: [null],
+        isCover: [null, [Validators.required]],
+      })
+    }
   }
 
   submitForm() {

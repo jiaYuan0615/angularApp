@@ -56,8 +56,9 @@ export class CollectionEffects {
    */
   postCollectionItem$ = createEffect(() => this.actions$.pipe(
     ofType(actions.PostCollectionItemAction),
-    switchMap((payload) => {
-      return this.collectService.postItemToCollection(payload.payload).pipe(
+    switchMap(({ payload }) => {
+
+      return this.collectService.postItemToCollection(payload).pipe(
         map(({ message }) => {
           this.message.success(message)
           return actions.GetCollectionAction()

@@ -10,6 +10,7 @@ import { country, countries } from 'src/app/utils/country';
 export class SingerFormComponent implements OnInit {
 
   @Input() groups: any;
+  @Input() singer: any;
   countries: country[] = countries
   singerForm: FormGroup
   thumbUrl: string = ''
@@ -24,16 +25,22 @@ export class SingerFormComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.singerForm = this.fb.group({
-      name: [null, [Validators.required]],
-      biography: [null, [Validators.required]],
-      groupId: [null, [Validators.required]],
-      avatar: [null, [Validators.required]],
-      nickname: [null, [Validators.required]],
-      gender: [null, [Validators.required]],
-      birth: [null, [Validators.required]],
-      country: [null, [Validators.required]],
-    })
+    if (this.singer) {
+      const item = {}
+      Object.keys(this.singer).map((v) => item[v] = [this.singer[v], [Validators.required]])
+      this.singerForm = this.fb.group(item)
+    } else {
+      this.singerForm = this.fb.group({
+        name: [null, [Validators.required]],
+        biography: [null, [Validators.required]],
+        groupId: [null, [Validators.required]],
+        avatar: [null, [Validators.required]],
+        nickname: [null, [Validators.required]],
+        gender: [null, [Validators.required]],
+        birth: [null, [Validators.required]],
+        country: [null, [Validators.required]],
+      })
+    }
   }
 
   submitForm() {

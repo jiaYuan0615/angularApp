@@ -17,7 +17,7 @@ export class MemberEffects {
     private message: NzMessageService
   ) { }
 
-
+  // 取得會員資料
   memberInfo$ = createEffect(() => this.actions$.pipe(
     ofType(actions.GetMemberAction),
     switchMap(() => {
@@ -47,7 +47,7 @@ export class MemberEffects {
           return actions.GoToRouteAction({ payload: { path: ['/'] } })
         }),
         catchError(({ error }) => {
-          this.message.error(error.message)
+          this.message.error(error.message || '登入失敗，請稍後重新嘗試')
           member.callback('執行登入失敗')
           return of(actions.GoToRouteAction({ payload: { path: ['/auth/login'] } }))
         })
@@ -65,6 +65,42 @@ export class MemberEffects {
     catchError((error) => {
       this.message.error('發生錯誤，請稍候再嘗試一次')
       return of(actions.GoToRouteAction({ payload: { path: ['/'] } }))
+    })
+  ))
+
+  // 修改會員資料
+  updateMember$ = createEffect(() => this.actions$.pipe(
+    ofType(actions.UpdateMemberAction),
+    switchMap((member) => {
+      return this.memberService.updateMember(member.payload).pipe(
+        map(({ message }) => {
+          this.message.success(message)
+          return actions.GetMemberAction()
+        }),
+        catchError(({ error }) => {
+          this.message.error(error.message)
+          return of(actions.GetMemberAction())
+        })
+      )
+    })
+  ))
+
+  // 修改密碼
+  updatePassword$ = createEffect(() => this.actions$.pipe(
+    ofType(actions.UpdatePasswordAction),
+    switchMap((member) => {
+      return this.memberService.updatePassword(member.payload).pipe(
+        map(({ message }) => {
+          this.message.success(message)
+          return actions.GoToRouteAction({ payload: { path: ['/auth/login'] } })
+        }),
+        catchError(({ error }) => {
+          console.log(error);
+
+          this.message.error(error.message)
+          return of(actions.UpdatePasswordFailAction({ payload: error.message }))
+        })
+      )
     })
   ))
 }

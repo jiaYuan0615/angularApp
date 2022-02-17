@@ -29,7 +29,7 @@ export class CollectService {
   }
 
   postItemToCollection(payload: any) {
-    return this.request.post<any>("collection/item", payload, {
+    return this.request.post<any>(`collection/item/${payload.collectionId}`, payload, {
       headers: new HttpHeaders({
         Authorization: `bearer ${getToken()}`,
       })

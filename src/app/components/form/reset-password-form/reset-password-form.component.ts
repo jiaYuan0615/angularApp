@@ -15,7 +15,7 @@ export class ResetPasswordFormComponent implements OnInit {
   ngOnInit(): void {
     this.resetPasswordForm = this.fb.group({
       password: [null, [Validators.required]],
-      newPassowrd: [null, [Validators.required]],
+      newPassword: [null, [Validators.required]],
       againPassword: [null, [Validators.required, this.confirmationValidator]]
     })
   }
@@ -28,7 +28,7 @@ export class ResetPasswordFormComponent implements OnInit {
   confirmationValidator = (control: FormControl): { [s: string]: boolean } => {
     if (!control.value) {
       return { required: true };
-    } else if (control.value !== this.resetPasswordForm.controls.password.value) {
+    } else if (control.value !== this.resetPasswordForm.controls.newPassword.value) {
       return { confirm: true, error: true };
     }
     return {};
@@ -36,7 +36,7 @@ export class ResetPasswordFormComponent implements OnInit {
 
   submitForm() {
     if (this.resetPasswordForm.valid) {
-      this.onSumbit(this.resetPasswordForm.value, 'reset')
+      return this.resetPasswordForm.value
     } else {
       for (const i in this.resetPasswordForm.controls) {
         if (this.resetPasswordForm.controls.hasOwnProperty(i)) {
@@ -44,6 +44,7 @@ export class ResetPasswordFormComponent implements OnInit {
           this.resetPasswordForm.controls[i].updateValueAndValidity();
         }
       }
+      return false
     }
   }
 

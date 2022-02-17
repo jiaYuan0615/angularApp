@@ -8,6 +8,10 @@ const getMemberSuccess = '[member] getMemberSuccess';
 const postMemberLogin = '[member] postMemberLogin';
 const getMemberLogout = '[member] getMemberLogout';
 const memberLoginFail = '[member] memberLoginFail'
+const updateMember = '[member] updateMember'
+const updatePassword = '[member] updatePassword'
+const updatePasswordFail = '[member] updatePasswordFail'
+
 
 export const GetMemberLogout = createAction(
   getMemberLogout
@@ -22,11 +26,22 @@ export const GetMemberSuccessAction = createAction(
   props<{ payload: MemberInfo }>()
 )
 
-// export const PostMemberLoginAction = createAction(
-//   postMemberLogin,
-//   props<{ payload: MemberLogin }>()
-// )
 export const PostMemberLoginAction = createAction(
   postMemberLogin,
   props<{ payload: MemberLogin, callback?: (...args: any) => void }>()
+)
+
+export const UpdateMemberAction = createAction(
+  updateMember,
+  props<{ payload: any, callback?: (...args: any) => void }>()
+)
+
+export const UpdatePasswordAction = createAction(
+  updatePassword,
+  props<{ payload: any, callback?: (...args: any) => void }>()
+)
+
+export const UpdatePasswordFailAction = createAction(
+  updatePasswordFail,
+  props<{ payload: string }>()
 )

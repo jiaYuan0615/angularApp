@@ -20,7 +20,6 @@ export class SingerComponent implements OnInit {
   isVisible = false;
   singers$: Observable<Singer[]>
   groups$: Observable<Group[]>
-  collections$: Observable<Collection[]>
   items$: Observable<any>
   singer: Singer;
   modalTitle: string;
@@ -34,16 +33,10 @@ export class SingerComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(fromStore.GetSingerAction());
-    this.store.dispatch(fromStore.GetCollectionAction());
     this.store.dispatch(fromStore.GetGroupAction());
 
     this.singers$ = this.store.select(fromStore.getSingerSelector);
-    this.collections$ = this.store.select(fromStore.getCollectionSelector);
     this.groups$ = this.store.select(fromStore.getGroupSelector);
-
-    this.items$ = combineLatest([this.singers$, this.collections$]).pipe(
-      map(([singer, collection]) => ({ singer, collection }))
-    )
   }
 
   showModal = (type: string, title: string, value?) => {

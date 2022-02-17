@@ -17,5 +17,19 @@
       >
         <i nz-icon nzType="search"></i>
       </button>
+      <button
+        nz-button
+        nzType="primary"
+        style="background-color: #ffe58f; color: #000; border: 0;"
+        nzShape="circle"
+        (click)="showModal('edit','修改歌曲資訊',sound)"
+    >
+      <i nz-icon nzType="edit"></i>
+    </button>
+    <app-collect-button
+      [collectItem]="collectItem"
+      [targetId]="sound.id"
+      [collection]="collection">
+    </app-collect-button>
   </div>
 </div>

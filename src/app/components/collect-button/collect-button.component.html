@@ -1,4 +1,64 @@
-
-<button nz-button>
+<button
+  nz-button
+  nz-popover
+  nzPopoverTrigger="click"
+  [(nzPopoverVisible)]="popoverVisible"
+  [nzPopoverContent]="extraSetting"
+  nzPopoverPlacement="bottom"
+  (nzPopoverVisibleChange)="popoverVisibleChange($event)"
+>
   <i nz-icon nzType="folder-open" nzTheme="outline"></i>收藏
 </button>
+
+<ng-template #extraSetting>
+  <div>
+      <div style="text-align: center; margin-bottom: 10px;">
+        新增收藏至 ...
+      <button
+        nz-button
+        style="border: 0;"
+        (click)="handleClose()"
+      >
+        <i nz-icon nzType="close"></i>
+      </button>
+      </div>
+        <div style="margin-left: 10px;">
+          <nz-checkbox-wrapper
+            style="width: 100%;"
+            (nzOnChange)="checkHandler($event)"
+          >
+            <div nz-row>
+              <div
+                nz-col
+                *ngFor="let v of items"
+                nzSpan="24"
+              >
+              <label
+                nz-checkbox
+                style="margin: 5px 0;"
+                nzValue={{v.value}}
+              >{{v.label}}
+              </label>
+              </div>
+            </div>
+          </nz-checkbox-wrapper>
+        </div>
+      <div style="text-align: center; margin-top: 10px;">
+        <button
+          nz-button
+          style="border: 0;"
+          (click)="handleAdd(true)"
+        >
+        <i nz-icon nzType="plus" nzTheme="outline"></i>
+          新增收藏資料夾
+        </button>
+        <div>
+          <ng-container *ngIf="showAdd">
+            <app-collection-form></app-collection-form>
+          </ng-container >
+        </div>
+      </div>
+  </div>
+</ng-template>
+
+

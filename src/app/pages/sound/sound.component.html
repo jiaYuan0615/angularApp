@@ -9,15 +9,17 @@
 </button>
 </div>
 
-<ng-container  *ngIf="sounds$ | async as sounds; else empty">
+<ng-container  *ngIf="items$ | async as items; else empty">
   <div class="sound" nz-row>
     <app-card
-      *ngFor="let v of sounds"
+      *ngFor="let v of items.sounds"
       nz-col
       [nzLg]="24"
       [nzXs]="24"
       [sound]="v"
+      [collection]="items.collection"
       [showModal]="showModal"
+      [collectItem]="collectItem"
       (clickEvent)="handler($event)"
     ></app-card>
 </div>
@@ -43,6 +45,16 @@
   </app-sound-form>
 </ng-container>
 <ng-container *ngIf="modalType === 'detail'">
-  <app-sound-detail [sound]="sound"></app-sound-detail>
+  <app-sound-detail
+    [sound]="sound"
+    [collectItem]="collectItem"
+  ></app-sound-detail>
+</ng-container>
+<ng-container *ngIf="modalType === 'edit'">
+  <app-sound-form
+    [singers]="singers$ | async"
+    [sound]="sound"
+  >
+  </app-sound-form>
 </ng-container>
 </nz-modal>

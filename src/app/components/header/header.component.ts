@@ -34,9 +34,11 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  mobileListHandler(path: string[]) {
+  goToRouteHandler(path: string[]) {
     this.goToRoute(path)
-    this.closeDrawer()
+    if (this.isMobile) {
+      this.closeDrawer()
+    }
   }
 
   showDrawer() {
@@ -44,18 +46,14 @@ export class HeaderComponent implements OnInit {
   }
 
   onSubmit = (value: any, callback?: any) => {
-    console.log(value);
-
     if (this.modalType === 'profile') {
       // update profile
-      const payload = new FormData();
-      Object.keys(value).map(key => payload.append(key, value[key]))
-      // this.store.dispatch()
+      const items = new FormData();
+      Object.keys(value).map(key => items.append(key, value[key]))
+      this.store.dispatch(fromStore.UpdateMemberAction({ payload: items }))
     } else {
-      // reset password
-      // this.store.dispatch()
+      this.store.dispatch(fromStore.UpdatePasswordAction({ payload: value }))
     }
-
     if (callback) callback()
   }
 
@@ -70,7 +68,7 @@ export class HeaderComponent implements OnInit {
       value = this.upf.submitForm()
       callback = () => {
         this.upf.handleReset()
-        this.upf.profileForm.reset()
+        this.upf.showPreviousAvatar = true
         this.modalVisible = false
       }
     } else {

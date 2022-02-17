@@ -23,4 +23,20 @@ export class MemberService {
   postLogin(payload: any) {
     return this.request.post<any>('member/login', payload)
   }
+
+  updateMember(payload: any) {
+    return this.request.put<any>('member', payload, {
+      headers: new HttpHeaders({
+        Authorization: `bearer ${getToken()}`
+      })
+    })
+  }
+
+  updatePassword(payload: any) {
+    return this.request.put<any>('member/password', payload, {
+      headers: new HttpHeaders({
+        Authorization: `bearer ${getToken()}`,
+      })
+    })
+  }
 }

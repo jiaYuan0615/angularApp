@@ -12,6 +12,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
+import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzPopoverModule } from 'ng-zorro-antd/popover';
 import { NzProgressModule } from 'ng-zorro-antd/progress';
 import { NzButtonModule } from 'ng-zorro-antd/button';
@@ -72,10 +73,13 @@ import { SingerDetailComponent } from './components/singer-detail/singer-detail.
 import { GroupDetailComponent } from './components/group-detail/group-detail.component';
 import { UpdateProfileFormComponent } from './components/form/update-profile-form/update-profile-form.component';
 import { CollectButtonComponent } from './components/collect-button/collect-button.component';
+import { CollectionComponent } from './pages/collection/collection.component';
+import { CollectionFormComponent } from './components/form/collection-form/collection-form.component';
 
 registerLocaleData(zh);
 
 const ngZorroModule = [
+  NzCheckboxModule,
   NzDescriptionsModule,
   NzProgressModule,
   NzDividerModule,
@@ -137,6 +141,8 @@ const ngZorroModule = [
     GroupDetailComponent,
     UpdateProfileFormComponent,
     CollectButtonComponent,
+    CollectionComponent,
+    CollectionFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -154,7 +160,7 @@ const ngZorroModule = [
   providers: [
     { provide: NZ_I18N, useValue: zh_TW },
     { provide: RouterStateSerializer, useClass: fromStore.CustomSerializer },
-    { provide: ErrorHandler, useClass: ErrorLogHandler }
+    // { provide: ErrorHandler, useClass: ErrorLogHandler }
   ],
   bootstrap: [AppComponent]
 })

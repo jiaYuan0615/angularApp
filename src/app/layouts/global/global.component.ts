@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { AfterViewInit, Component, HostListener, OnInit } from '@angular/core';
 import * as fromStore from '../../store';
 import { Store } from '@ngrx/store';
 import { Observable, pipe } from 'rxjs';
@@ -10,10 +10,10 @@ import { GetMemberLogout } from '../../store';
   templateUrl: './global.component.html',
   styleUrls: ['./global.component.less']
 })
-export class GlobalComponent implements OnInit {
+export class GlobalComponent implements OnInit, AfterViewInit {
   readonly width: Number = 768;
   memberInfo$: Observable<any>;
-  isMobile: boolean = false;
+  isMobile: boolean
   constructor(
     private store: Store<fromStore.State>
   ) { }
@@ -21,7 +21,6 @@ export class GlobalComponent implements OnInit {
   ngOnInit(): void {
     this.store.dispatch(fromStore.GetMemberAction());
     this.memberInfo$ = this.store.select(fromStore.getMemberSelector);
-
   }
 
   @HostListener('window:resize', ['$event'])

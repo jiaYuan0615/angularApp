@@ -23,6 +23,15 @@
         <i nz-icon nzType="upload"></i>
         上傳圖片
       </button>
+      <ng-container *ngIf="singer">
+        <div class="upload">
+          <img
+            width="100"
+            src={{singer.avatar}}
+            alt={{singer.name}}
+        />
+        </div>
+      </ng-container>
       <ng-container *ngIf="thumbUrl">
         <div class="upload">
           <img
@@ -42,6 +51,7 @@
           </button>
         </div>
         <nz-progress
+          nzSize="small"
           [nzPercent]="progress"
           nzStrokeColor="#1890ff"
         >

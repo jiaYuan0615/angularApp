@@ -8,6 +8,7 @@ import { SoundComponent } from './pages/sound/sound.component';
 import { SingerComponent } from './pages/singer/singer.component';
 import { GroupComponent } from './pages/group/group.component';
 import { LoginFormComponent } from './components/form/login-form/login-form.component';
+import { CollectionComponent } from './pages/collection/collection.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,7 @@ const routes: Routes = [
       { path: 'group', component: GroupComponent },
       { path: 'group/:id', component: GroupComponent },
       { path: 'profile', component: ProfileComponent },
+      { path: 'collection', component: CollectionComponent },
       { path: '*', redirectTo: '/' }
     ]
   },

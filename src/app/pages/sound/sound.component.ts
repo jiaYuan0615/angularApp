@@ -1,10 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { combineLatest, Observable } from 'rxjs';
 import { SoundFormComponent } from 'src/app/components/form/sound-form/sound-form.component';
+import { Collection } from 'src/app/interface/collection';
 import { Singer } from 'src/app/interface/singer';
 import { Sound } from 'src/app/interface/sound';
 import * as fromStore from '../../store';
+import { map } from 'rxjs/operators';
+
 @Component({
   selector: 'app-sound',
   templateUrl: './sound.component.html',
@@ -17,6 +20,8 @@ export class SoundComponent implements OnInit {
   sound: Sound
   sounds$: Observable<Sound[]>;
   singers$: Observable<Singer[]>
+  collections$: Observable<Collection[]>
+  items$: Observable<any>;
   isMobile$: Observable<any>;
 
   @ViewChild(SoundFormComponent) sfc: SoundFormComponent
@@ -28,15 +33,20 @@ export class SoundComponent implements OnInit {
   ngOnInit(): void {
     this.store.dispatch(fromStore.GetSingerAction());
     this.store.dispatch(fromStore.GetSoundAction());
+    this.store.dispatch(fromStore.GetCollectionAction());
     this.singers$ = this.store.select(fromStore.getSingerSelector);
     this.sounds$ = this.store.select(fromStore.getSoundSelector);
+    this.collections$ = this.store.select(fromStore.getCollectionSelector);
+    this.items$ = combineLatest([this.sounds$, this.collections$]).pipe(
+      map(([sounds, collection]) => ({ sounds, collection }))
+    )
     // const observer = {
     //   next: v => this.sounds = v,
     //   error: e => console.log(e),
     //   complete: () => { }
     // }
   }
-  showModal = (type: string, title: string, value?) => {
+  showModal = (type: string, title: string, value?: any) => {
     this.modalType = type;
     this.modalTitle = title;
     this.isVisible = true;
@@ -67,6 +77,10 @@ export class SoundComponent implements OnInit {
 
   handleCancel(): void {
     this.isVisible = false;
+  }
+
+  collectItem = (value) => {
+    this.store.dispatch(fromStore.PostCollectionItemAction({ payload: value }))
   }
 
   goToRoute = (path: string[]) => {

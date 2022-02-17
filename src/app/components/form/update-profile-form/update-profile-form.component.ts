@@ -25,7 +25,7 @@ export class UpdateProfileFormComponent implements OnInit {
       avatar: [null],
       email: [{ value: this.memberInfo.email, disabled: true }],
       name: [this.memberInfo.name, [Validators.required]],
-      gender: [{ value: `${this.memberInfo.gender}性`, disabled: true }],
+      gender: [{ value: this.memberInfo.gender, disabled: true }],
       email_verified: [{ value: this.memberInfo.email_verified, disabled: true }],
       createdAt: [{ value: this.memberInfo.createdAt, disabled: true }],
       updatedAt: [{ value: this.memberInfo.updatedAt, disabled: true }],

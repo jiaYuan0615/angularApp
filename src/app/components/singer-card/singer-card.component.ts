@@ -16,7 +16,6 @@ export class SingerCardComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-
   }
 
 

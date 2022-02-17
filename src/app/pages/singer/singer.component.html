@@ -9,15 +9,14 @@
 </button>
 </div>
 
-<ng-container *ngIf="items$ | async as items; else empty">
+<ng-container *ngIf="singers$ | async as singers; else empty">
   <div class="singer" nz-row>
       <app-singer-card
-        *ngFor="let v of items.singer"
+        *ngFor="let v of singers"
         nz-col
         [nzLg]="24"
         [nzXs]="24"
         [singer]="v"
-        [collection]="items.collection"
         [goToRoute]="goToRoute"
         [showModal]="showModal"
       ></app-singer-card>
@@ -46,5 +45,11 @@
     <app-singer-detail
       [singer]="singer"
     ></app-singer-detail>
+  </ng-container>
+  <ng-container *ngIf="modalType === 'edit'">
+    <app-singer-form
+      [groups]="groups$ | async"
+      [singer]="singer"
+    ></app-singer-form>
   </ng-container>
 </nz-modal>

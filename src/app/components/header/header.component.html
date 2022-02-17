@@ -14,13 +14,17 @@
       (nzOnClose)="closeDrawer()"
     >
     <ul nz-menu nzTheme="light" nzMode="inline">
-      <li nz-menu-item (click)="mobileListHandler(['/'])">回首頁</li>
-      <li nz-menu-item (click)="mobileListHandler(['sound'])">歌曲列表</li>
-      <li nz-menu-item (click)="mobileListHandler(['singer'])">歌手列表</li>
-      <li nz-menu-item (click)="mobileListHandler(['group'])">團體列表</li>
-      <li nz-menu-item (click)="handleOpenModal('reset','變更密碼',closeDrawer())">修改密碼</li>
-      <li nz-menu-item (click)="handleOpenModal('profile','修改個人資訊',closeDrawer())">修改個人資訊</li>
-      <li nz-menu-item (click)="mobileListHandler(['auth','login'])">登出</li>
+      <li nz-menu-item (click)="goToRouteHandler(['/'])">回首頁</li>
+      <li nz-menu-item (click)="goToRouteHandler(['sound'])">歌曲列表</li>
+      <li nz-menu-item (click)="goToRouteHandler(['singer'])">歌手列表</li>
+      <li nz-menu-item (click)="goToRouteHandler(['group'])">團體列表</li>
+      <li nz-menu-item (click)="goToRouteHandler(['collection'])">我的收藏</li>
+      <ng-container *ngIf="memberInfo.id">
+        <li nz-menu-item ><nz-divider></nz-divider></li>
+        <li nz-menu-item (click)="handleOpenModal('reset','變更密碼',closeDrawer())">修改密碼</li>
+        <li nz-menu-item (click)="handleOpenModal('profile','修改個人資訊',closeDrawer())">修改個人資訊</li>
+        <li nz-menu-item (click)="goToRouteHandler(['auth','login'])">登出</li>
+      </ng-container>
     </ul>
     </nz-drawer>
   </ng-container>
@@ -46,12 +50,12 @@
     </ng-template>
   </div>
   <ul style="text-align: center;" nz-menu nzTheme="dark"  nzMode="horizontal">
-    <li nz-menu-item (click)="goToRoute(['sound'])">歌曲列表</li>
-    <li nz-menu-item (click)="goToRoute(['singer'])">歌手列表</li>
-    <li nz-menu-item (click)="goToRoute(['group'])">團體列表</li>
+    <li nz-menu-item (click)="goToRouteHandler(['sound'])">歌曲列表</li>
+    <li nz-menu-item (click)="goToRouteHandler(['singer'])">歌手列表</li>
+    <li nz-menu-item (click)="goToRouteHandler(['group'])">團體列表</li>
+    <li nz-menu-item (click)="goToRouteHandler(['collection'])">我的收藏</li>
   </ul>
 </ng-template>
-
   <!-- 共用 modal 區 -->
     <nz-modal
       [(nzVisible)]="modalVisible"
@@ -66,7 +70,7 @@
       ></app-reset-password-form>
     </ng-container>
     <ng-container *ngIf="modalType === 'profile'">
-      <app-update-profile-form
+    <app-update-profile-form
         [memberInfo]="memberInfo"
       >
       </app-update-profile-form>

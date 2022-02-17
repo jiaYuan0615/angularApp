@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
       console.log(param);
     }
     if (type === 'login') {
-      this.store.dispatch(PostMemberLoginAction({ payload: value, callback }));
+      this.store.dispatch(fromStore.PostMemberLoginAction({ payload: value, callback }));
     } else {
       console.log(value, type);
     }
