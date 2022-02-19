@@ -1,1 +1,25 @@
-<p>collection works!</p>
+<nz-collapse>
+  <ng-container *ngIf="collection$ | async as collections; else empty">
+    <nz-collapse-panel
+      *ngFor="let v of collections"
+      [nzHeader]="v.name"
+      [nzExtra]="extra"
+    >
+    <p *ngFor="let x of v.sounds">
+      {{x}}
+    </p>
+  </nz-collapse-panel>
+  </ng-container>
+</nz-collapse>
+
+<ng-template #extra>
+  <i
+    nz-icon
+    nzType="setting"
+    (click)="$event.stopPropagation()">
+  </i>
+</ng-template>
+
+<ng-template #empty>
+  <app-loading></app-loading>
+</ng-template>

@@ -6,9 +6,10 @@
     </div>
     <div>
       <p>發行年份：{{sound.publishYear}}</p>
-      <p>電影原聲帶：{{sound.ost}}</p>
+      <p>電影原聲帶：{{sound.ost || '無'}}</p>
     </div>
-    <button
+    <div class="button">
+      <button
         nz-button
         class="search"
         nzType="primary"
@@ -19,13 +20,15 @@
       </button>
       <button
         nz-button
+        class="search"
         nzType="primary"
-        style="background-color: #ffe58f; color: #000; border: 0;"
+        style="background-color: #ffe58f; color: #000;"
         nzShape="circle"
         (click)="showModal('edit','修改歌曲資訊',sound)"
     >
       <i nz-icon nzType="edit"></i>
     </button>
+    </div>
     <app-collect-button
       [collectItem]="collectItem"
       [targetId]="sound.id"

@@ -37,4 +37,20 @@ export class SoundService {
     }
     return this.request.post<any>("sound", payload, options);
   };
+
+  putSound(id: string, payload: any) {
+    return this.request.put<any>(`sound/${id}`, payload, {
+      headers: new HttpHeaders({
+        Authorization: `bearer ${getToken()}`,
+      })
+    });
+  }
+
+  deleteSound(id: string) {
+    return this.request.delete(`sound/${id}`, {
+      headers: new HttpHeaders({
+        Authorization: `bearer ${getToken()}`,
+      })
+    })
+  }
 }

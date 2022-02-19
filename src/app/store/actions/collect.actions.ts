@@ -29,7 +29,6 @@ export const GetCollectionItemSuccessAction = createAction(
   props<{ payload: any }>()
 )
 
-
 export const PostCollectionAction = createAction(
   postCollection,
   props<{ payload: any, callback?: (...args: any) => void }>()

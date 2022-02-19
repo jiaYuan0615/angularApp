@@ -24,6 +24,10 @@ export class MemberService {
     return this.request.post<any>('member/login', payload)
   }
 
+  registerMember(payload: any) {
+    return this.request.post<any>("member/register", payload)
+  }
+
   updateMember(payload: any) {
     return this.request.put<any>('member', payload, {
       headers: new HttpHeaders({

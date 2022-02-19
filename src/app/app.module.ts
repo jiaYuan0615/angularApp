@@ -75,10 +75,12 @@ import { UpdateProfileFormComponent } from './components/form/update-profile-for
 import { CollectButtonComponent } from './components/collect-button/collect-button.component';
 import { CollectionComponent } from './pages/collection/collection.component';
 import { CollectionFormComponent } from './components/form/collection-form/collection-form.component';
+import { NzCollapseModule } from 'ng-zorro-antd/collapse';
 
 registerLocaleData(zh);
 
 const ngZorroModule = [
+  NzCollapseModule,
   NzCheckboxModule,
   NzDescriptionsModule,
   NzProgressModule,

@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import * as fromStore from '../../store';
 
 @Component({
   selector: 'app-collection',
@@ -6,10 +9,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./collection.component.less']
 })
 export class CollectionComponent implements OnInit {
-
-  constructor() { }
+  collection$: Observable<any>;
+  constructor(
+    private store: Store<fromStore.State>
+  ) { }
 
   ngOnInit(): void {
+    this.store.dispatch(fromStore.GetCollectionAction())
+    this.collection$ = this.store.select(fromStore.getCollectionSelector);
   }
 
+
+  handleEdit(param) {
+    console.log(param);
+
+  }
 }

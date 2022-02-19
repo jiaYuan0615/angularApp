@@ -34,4 +34,20 @@ export class SingerService {
     }
     return this.request.post<any>("singer", payload, options);
   }
+
+  putSinger(id: string, payload: any) {
+    return this.request.put<any>(`singer/${id}`, payload, {
+      headers: new HttpHeaders({
+        Authorization: `bearer ${getToken()}`,
+      })
+    })
+  }
+
+  deleteSinger(id: string) {
+    return this.request.delete<any>(`singer/${id}`, {
+      headers: new HttpHeaders({
+        Authorization: `bearer ${getToken()}`
+      })
+    })
+  }
 }

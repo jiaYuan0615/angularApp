@@ -36,4 +36,19 @@ export class CollectService {
     })
   }
 
+  putCollection(id: string, payload: any) {
+    return this.request.put<any>(`collection/${id}`, payload, {
+      headers: new HttpHeaders({
+        Authorization: `bearer ${getToken()}`,
+      })
+    })
+  }
+
+  deleteCollection(id: string) {
+    return this.request.get<any>(`collection/${id}`, {
+      headers: new HttpHeaders({
+        Authorization: `bearer ${getToken()}`,
+      })
+    })
+  }
 }

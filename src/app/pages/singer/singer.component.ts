@@ -3,13 +3,11 @@ import { Store } from '@ngrx/store';
 import { Singer } from 'src/app/interface/singer';
 import * as fromStore from '../../store';
 import { GoToRouteAction } from '../../store/actions/router.actions'
-import { Observable, combineLatest, zip } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Group } from 'src/app/interface/group';
 import { SingerFormComponent } from 'src/app/components/form/singer-form/singer-form.component';
 import { PostSingerAction } from '../../store';
 import * as moment from 'moment';
-import { Collection } from 'src/app/interface/collection';
-import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-singer',
