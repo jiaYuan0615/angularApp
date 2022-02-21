@@ -10,39 +10,10 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { NzLayoutModule } from 'ng-zorro-antd/layout';
-import { NzMenuModule } from 'ng-zorro-antd/menu';
-import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
-import { NzPopoverModule } from 'ng-zorro-antd/popover';
-import { NzProgressModule } from 'ng-zorro-antd/progress';
-import { NzButtonModule } from 'ng-zorro-antd/button';
-import { NzResultModule } from 'ng-zorro-antd/result';
-import { NzCardModule } from 'ng-zorro-antd/card';
-import { NzSpinModule } from 'ng-zorro-antd/spin';
-import { NzFormModule } from 'ng-zorro-antd/form';
-import { NzInputModule } from 'ng-zorro-antd/input';
-import { NzGridModule } from 'ng-zorro-antd/grid';
-import { NzDrawerModule } from 'ng-zorro-antd/drawer';
-import { NzAvatarModule } from 'ng-zorro-antd/avatar';
-import { NzPaginationModule } from 'ng-zorro-antd/pagination';
-import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
-import { NzUploadModule } from 'ng-zorro-antd/upload';
-import { NzDividerModule } from 'ng-zorro-antd/divider';
-import { NzIconModule } from 'ng-zorro-antd/icon';
-import { NzModalModule } from 'ng-zorro-antd/modal';
-import { NzSelectModule } from 'ng-zorro-antd/select';
-import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
-import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
-import { NzRadioModule } from 'ng-zorro-antd/radio';
-import { NzTabsModule } from 'ng-zorro-antd/tabs'
-import { NzCarouselModule } from 'ng-zorro-antd/carousel';
-import { NzMessageModule } from 'ng-zorro-antd/message';
-import { NzCalendarModule } from 'ng-zorro-antd/calendar';
-import { NzDescriptionsModule } from 'ng-zorro-antd/descriptions';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { registerLocaleData } from '@angular/common';
 import zh from '@angular/common/locales/zh';
-import en from '@angular/common/locales/en';
 import { LoadingComponent } from './components/loading/loading.component';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 import { GlobalComponent } from './layouts/global/global.component';
@@ -59,7 +30,6 @@ import { SingerFormComponent } from './components/form/singer-form/singer-form.c
 import { StoreModule } from '@ngrx/store';
 import * as fromStore from './store'
 import { EffectsModule } from '@ngrx/effects';
-import { environment } from 'src/environments/environment';
 import { RouterStateSerializer, StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { ResetPasswordFormComponent } from './components/form/reset-password-form/reset-password-form.component';
@@ -75,42 +45,11 @@ import { UpdateProfileFormComponent } from './components/form/update-profile-for
 import { CollectButtonComponent } from './components/collect-button/collect-button.component';
 import { CollectionComponent } from './pages/collection/collection.component';
 import { CollectionFormComponent } from './components/form/collection-form/collection-form.component';
-import { NzCollapseModule } from 'ng-zorro-antd/collapse';
+import { ShareModule } from './share/share.module';
+
 
 registerLocaleData(zh);
 
-const ngZorroModule = [
-  NzCollapseModule,
-  NzCheckboxModule,
-  NzDescriptionsModule,
-  NzProgressModule,
-  NzDividerModule,
-  NzCarouselModule,
-  NzCalendarModule,
-  NzLayoutModule,
-  NzMessageModule,
-  NzDatePickerModule,
-  NzMenuModule,
-  NzResultModule,
-  NzIconModule,
-  NzButtonModule,
-  NzSpinModule,
-  NzFormModule,
-  NzBreadCrumbModule,
-  NzInputModule,
-  NzCardModule,
-  NzTabsModule,
-  NzAvatarModule,
-  NzPaginationModule,
-  NzUploadModule,
-  NzModalModule,
-  NzSelectModule,
-  NzRadioModule,
-  NzGridModule,
-  NzDrawerModule,
-  NzSkeletonModule,
-  NzPopoverModule
-]
 
 @NgModule({
   declarations: [
@@ -120,7 +59,7 @@ const ngZorroModule = [
     HeaderComponent,
     FooterComponent,
     SingerComponent,
-    LoadingComponent,
+    // LoadingComponent,
     SoundComponent,
     BreadcrumbComponent,
     GlobalComponent,
@@ -151,8 +90,8 @@ const ngZorroModule = [
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    ...ngZorroModule,
     FormsModule,
+    ShareModule,
     BrowserAnimationsModule,
     StoreModule.forRoot(fromStore.reducers),
     EffectsModule.forRoot(fromStore.effects),

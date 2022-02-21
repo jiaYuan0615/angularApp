@@ -1,5 +1,6 @@
-<nz-collapse>
-  <ng-container *ngIf="collection$ | async as collections; else empty">
+
+<ng-container *ngIf="collection$ | async as collections; else empty">
+  <nz-collapse>
     <nz-collapse-panel
       *ngFor="let v of collections"
       [nzHeader]="v.name"
@@ -8,9 +9,9 @@
     <p *ngFor="let x of v.sounds">
       {{x}}
     </p>
-  </nz-collapse-panel>
-  </ng-container>
-</nz-collapse>
+    </nz-collapse-panel>
+  </nz-collapse>
+</ng-container>
 
 <ng-template #extra>
   <i

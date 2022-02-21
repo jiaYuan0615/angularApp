@@ -2,8 +2,6 @@ import { AfterViewInit, Component, HostListener, OnInit } from '@angular/core';
 import * as fromStore from '../../store';
 import { Store } from '@ngrx/store';
 import { Observable, pipe } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
-import { GetMemberLogout } from '../../store';
 
 @Component({
   selector: 'app-global',
