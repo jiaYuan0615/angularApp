@@ -11,7 +11,7 @@ import { Observable, pipe } from 'rxjs';
 export class GlobalComponent implements OnInit, AfterViewInit {
   readonly width: Number = 768;
   memberInfo$: Observable<any>;
-  isMobile: boolean
+  isMobile: boolean = false;
   constructor(
     private store: Store<fromStore.State>
   ) { }

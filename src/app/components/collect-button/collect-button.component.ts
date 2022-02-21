@@ -1,9 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-collect-button',
   templateUrl: './collect-button.component.html',
-  styleUrls: ['./collect-button.component.less']
+  styleUrls: ['./collect-button.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 
@@ -17,6 +18,8 @@ export class CollectButtonComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log(this.collection);
+
     this.items = this.collection.map(x => {
       return {
         label: x.name,

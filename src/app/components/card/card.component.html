@@ -29,10 +29,6 @@
       <i nz-icon nzType="edit"></i>
     </button>
     </div>
-    <app-collect-button
-      [collectItem]="collectItem"
-      [targetId]="sound.id"
-      [collection]="collection">
-    </app-collect-button>
+    <ng-content></ng-content>
   </div>
 </div>

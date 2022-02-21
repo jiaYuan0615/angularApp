@@ -14,10 +14,15 @@ export const initialState: CollectionState = {
 
 export const collectionReducer = createReducer(
   initialState,
-  on(actions.GetCollectionSuccessAction, (state, { payload }) => ({ ...state, collection: payload })),
+  on(actions.GetCollectionSuccessAction, (state, { payload }) => {
+    return {
+      ...state,
+      collection: payload
+    }
+  }),
   on(actions.GetCollectionItemSuccessAction, (state, { payload }) => ({ ...state, collectionItem: payload.collection }))
 )
 
 
-export const getCollection = (state) => state.collection;
-export const getCollectionItem = (state) => state.collectionItem;
+export const getCollection = (state: CollectionState) => state.collection;
+export const getCollectionItem = (state: CollectionState) => state.collectionItem;

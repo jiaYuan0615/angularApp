@@ -31,6 +31,10 @@ import { NzCalendarModule } from 'ng-zorro-antd/calendar';
 import { NzDescriptionsModule } from 'ng-zorro-antd/descriptions';
 import { NzCollapseModule } from 'ng-zorro-antd/collapse';
 import { LoadingComponent } from '../components/loading/loading.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AgePipe } from '../pipe/age.pipe';
+import { NotFoundComponent } from '../components/not-found/not-found.component';
+import { CollectButtonComponent } from '../components/collect-button/collect-button.component';
 
 const NG_Zorro = [
   NzCollapseModule,
@@ -67,15 +71,25 @@ const NG_Zorro = [
 
 @NgModule({
   declarations: [
-    LoadingComponent
+    LoadingComponent,
+    AgePipe,
+    NotFoundComponent,
+    CollectButtonComponent,
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
+    FormsModule,
     ...NG_Zorro
   ],
   exports: [
     ...NG_Zorro,
     LoadingComponent,
+    ReactiveFormsModule,
+    FormsModule,
+    AgePipe,
+    NotFoundComponent,
+    CollectButtonComponent,
   ]
 })
 export class ShareModule { }

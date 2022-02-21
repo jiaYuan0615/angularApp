@@ -17,11 +17,15 @@
       [nzLg]="24"
       [nzXs]="24"
       [sound]="v"
-      [collection]="items.collection"
       [showModal]="showModal"
-      [collectItem]="collectItem"
       (clickEvent)="handler($event)"
-    ></app-card>
+    >
+      <app-collect-button
+        [collectItem]="collectItem"
+        [targetId]="v.id"
+        [collection]="items.collection"
+      ></app-collect-button>
+    </app-card>
 </div>
 </ng-container>
 

@@ -4,36 +4,40 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { GlobalComponent } from './layouts/global/global.component';
 import { LoginComponent } from './layouts/login/login.component';
-import { SoundComponent } from './pages/sound/sound.component';
-import { SingerComponent } from './pages/singer/singer.component';
-import { GroupComponent } from './pages/group/group.component';
-import { LoginFormComponent } from './components/form/login-form/login-form.component';
-import { CollectionComponent } from './pages/collection/collection.component';
 
 const routes: Routes = [
   {
     path: '',
     component: GlobalComponent,
     children: [
-      { path: '', component: ProfileComponent },
-      { path: 'sound', component: SoundComponent },
-      { path: 'sound/:id', component: SoundComponent },
-      { path: 'singer', component: SingerComponent },
-      { path: 'singer/:id', component: SingerComponent },
-      { path: 'group', component: GroupComponent },
-      { path: 'group/:id', component: GroupComponent },
+      {
+        path: '',
+        component: ProfileComponent
+      },
+      {
+        path: 'sound',
+        loadChildren: () => import('./module/sound/sound.module').then(m => m.SoundModule)
+      },
+      {
+        path: 'singer',
+        loadChildren: () => import('./module/singer/singer.module').then(m => m.SingerModule)
+      },
+      {
+        path: 'group',
+        loadChildren: () => import('./module/group/group.module').then(m => m.GroupModule)
+      },
+      {
+        path: 'collection',
+        loadChildren: () => import('./module/collection/collection.module').then(m => m.CollectionModule)
+      },
       { path: 'profile', component: ProfileComponent },
-      { path: 'collection', component: CollectionComponent },
       { path: '*', redirectTo: '/' }
     ]
   },
   {
     path: 'auth',
     component: LoginComponent,
-    children: [
-      { path: 'login', component: LoginFormComponent },
-      { path: '**', redirectTo: 'login' }
-    ]
+    loadChildren: () => import('./module/member/member.module').then(m => m.MemberModule)
   },
   { path: '**', component: NotFoundComponent }
 ];

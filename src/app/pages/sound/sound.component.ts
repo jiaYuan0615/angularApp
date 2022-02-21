@@ -22,7 +22,6 @@ export class SoundComponent implements OnInit {
   singers$: Observable<Singer[]>
   collections$: Observable<Collection[]>
   items$: Observable<any>;
-  isMobile$: Observable<any>;
 
   @ViewChild(SoundFormComponent) sfc: SoundFormComponent
 
@@ -32,14 +31,21 @@ export class SoundComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(fromStore.GetSingerAction());
-    this.store.dispatch(fromStore.GetSoundAction());
     this.store.dispatch(fromStore.GetCollectionAction());
+    this.store.dispatch(fromStore.GetSoundAction());
     this.singers$ = this.store.select(fromStore.getSingerSelector);
-    this.sounds$ = this.store.select(fromStore.getSoundSelector);
-    this.collections$ = this.store.select(fromStore.getCollectionSelector);
-    this.items$ = combineLatest([this.sounds$, this.collections$]).pipe(
-      map(([sounds, collection]) => ({ sounds, collection }))
-    )
+    this.items$ = combineLatest([
+      this.store.select(fromStore.getSoundSelector),
+      this.store.select(fromStore.getCollectionSelector),
+    ])
+      .pipe(
+        map(([sounds, collection]) => {
+          return {
+            sounds,
+            collection
+          }
+        })
+      )
     // const observer = {
     //   next: v => this.sounds = v,
     //   error: e => console.log(e),

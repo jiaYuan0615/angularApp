@@ -18,15 +18,8 @@ import { LoadingComponent } from './components/loading/loading.component';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 import { GlobalComponent } from './layouts/global/global.component';
 import { LoginComponent } from './layouts/login/login.component';
-import { SoundComponent } from './pages/sound/sound.component';
-import { SingerComponent } from './pages/singer/singer.component';
-import { GroupComponent } from './pages/group/group.component';
-import { CardComponent } from './components/card/card.component';
 import { LoginFormComponent } from './components/form/login-form/login-form.component';
-import { SingerCardComponent } from './components/singer-card/singer-card.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
-import { SoundFormComponent } from './components/form/sound-form/sound-form.component';
-import { SingerFormComponent } from './components/form/singer-form/singer-form.component';
 import { StoreModule } from '@ngrx/store';
 import * as fromStore from './store'
 import { EffectsModule } from '@ngrx/effects';
@@ -35,17 +28,9 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { ResetPasswordFormComponent } from './components/form/reset-password-form/reset-password-form.component';
 import { ForgetPasswordFormComponent } from './components/form/forget-password-form/forget-password-form.component';
 import { ErrorLogHandler } from './error-log-handler';
-import { AgePipe } from './pipe/age.pipe';
-import { GroupFormComponent } from './components/form/group-form/group-form.component';
-import { GroupCardComponent } from './components/group-card/group-card.component';
-import { SoundDetailComponent } from './components/sound-detail/sound-detail.component';
-import { SingerDetailComponent } from './components/singer-detail/singer-detail.component';
-import { GroupDetailComponent } from './components/group-detail/group-detail.component';
 import { UpdateProfileFormComponent } from './components/form/update-profile-form/update-profile-form.component';
-import { CollectButtonComponent } from './components/collect-button/collect-button.component';
-import { CollectionComponent } from './pages/collection/collection.component';
-import { CollectionFormComponent } from './components/form/collection-form/collection-form.component';
 import { ShareModule } from './share/share.module';
+import { MemberModule } from './module/member/member.module';
 
 
 registerLocaleData(zh);
@@ -55,43 +40,21 @@ registerLocaleData(zh);
   declarations: [
     AppComponent,
     ProfileComponent,
-    NotFoundComponent,
     HeaderComponent,
     FooterComponent,
-    SingerComponent,
-    // LoadingComponent,
-    SoundComponent,
     BreadcrumbComponent,
     GlobalComponent,
     LoginComponent,
-    SoundComponent,
-    GroupComponent,
-    CardComponent,
-    LoginFormComponent,
-    SingerCardComponent,
     PaginationComponent,
-    SoundFormComponent,
-    SingerFormComponent,
     ResetPasswordFormComponent,
-    ForgetPasswordFormComponent,
-    AgePipe,
-    GroupFormComponent,
-    GroupCardComponent,
-    SoundDetailComponent,
-    SingerDetailComponent,
-    GroupDetailComponent,
     UpdateProfileFormComponent,
-    CollectButtonComponent,
-    CollectionComponent,
-    CollectionFormComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule,
-    FormsModule,
     ShareModule,
+    MemberModule,
     BrowserAnimationsModule,
     StoreModule.forRoot(fromStore.reducers),
     EffectsModule.forRoot(fromStore.effects),
