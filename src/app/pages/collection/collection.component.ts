@@ -18,10 +18,4 @@ export class CollectionComponent implements OnInit {
     this.store.dispatch(fromStore.GetCollectionAction())
     this.collection$ = this.store.select(fromStore.getCollectionSelector);
   }
-
-
-  handleEdit(param) {
-    console.log(param);
-
-  }
 }

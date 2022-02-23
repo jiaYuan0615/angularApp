@@ -33,12 +33,13 @@
                 *ngFor="let v of items"
                 nzSpan="24"
               >
-              <label
-                nz-checkbox
-                style="margin: 5px 0;"
-                nzValue={{v.value}}
-              >{{v.label}}
-              </label>
+                <label
+                  nz-checkbox
+                  style="margin: 5px 0;"
+                  nzValue={{v.value}}
+                  [ngModel]="v.isCollect"
+                >{{v.label}}
+                </label>
               </div>
             </div>
           </nz-checkbox-wrapper>
@@ -47,7 +48,7 @@
         <button
           nz-button
           style="border: 0;"
-          (click)="handleAdd(true)"
+          (click)="handleAdd()"
         >
         <i nz-icon nzType="plus" nzTheme="outline"></i>
           新增收藏資料夾
@@ -55,7 +56,23 @@
         <div>
           <ng-container *ngIf="showAdd">
             <app-collection-form></app-collection-form>
-          </ng-container >
+            <div nz-row>
+              <div nz-col [nzSpan]="12">
+                <button
+                  nz-button
+                  nzType="'primary'"
+                  (click)="handleCreate()"
+                >確認</button>
+              </div>
+              <div nz-col [nzSpan]="12">
+                <button
+                  nz-button
+                  nzType="'danger'"
+                  (click)="handleAdd()"
+                >取消</button>
+              </div>
+            </div>
+          </ng-container>
         </div>
       </div>
   </div>

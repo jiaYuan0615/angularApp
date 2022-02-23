@@ -22,8 +22,10 @@
     >
       <app-collect-button
         [collectItem]="collectItem"
+        [deleteItem]="deleteItem"
+        [collect]="collect"
         [targetId]="v.id"
-        [collection]="items.collection"
+        [collection]="items.collections"
       ></app-collect-button>
     </app-card>
 </div>
@@ -51,7 +53,6 @@
 <ng-container *ngIf="modalType === 'detail'">
   <app-sound-detail
     [sound]="sound"
-    [collectItem]="collectItem"
   ></app-sound-detail>
 </ng-container>
 <ng-container *ngIf="modalType === 'edit'">

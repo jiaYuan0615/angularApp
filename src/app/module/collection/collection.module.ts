@@ -10,7 +10,6 @@ import { CollectionFormComponent } from 'src/app/components/form/collection-form
 @NgModule({
   declarations: [
     CollectionComponent,
-    CollectionFormComponent,
   ],
   imports: [
     CommonModule,

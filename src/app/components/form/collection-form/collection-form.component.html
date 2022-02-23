@@ -1,1 +1,20 @@
-<p>collection-form works!</p>
+<form
+  nz-form
+  nzLayout="vertical"
+  [formGroup]="collectionForm"
+  class="collection-form"
+>
+<nz-form-item>
+  <nz-form-label nzRequired nzFor="name">收藏資料夾</nz-form-label>
+  <nz-form-control nzErrorTip="資料夾名稱為必填">
+    <nz-input-group>
+      <input
+        type="text"
+        nz-input
+        formControlName="name"
+        placeholder="請輸入資料夾名稱"
+      />
+    </nz-input-group>
+  </nz-form-control>
+</nz-form-item>
+</form>

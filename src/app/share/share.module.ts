@@ -35,8 +35,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AgePipe } from '../pipe/age.pipe';
 import { NotFoundComponent } from '../components/not-found/not-found.component';
 import { CollectButtonComponent } from '../components/collect-button/collect-button.component';
+import { CollectionFormComponent } from '../components/form/collection-form/collection-form.component';
+import { NzTagModule } from 'ng-zorro-antd/tag';
 
 const NG_Zorro = [
+  NzTagModule,
   NzCollapseModule,
   NzCheckboxModule,
   NzDescriptionsModule,
@@ -75,6 +78,7 @@ const NG_Zorro = [
     AgePipe,
     NotFoundComponent,
     CollectButtonComponent,
+    CollectionFormComponent,
   ],
   imports: [
     CommonModule,
@@ -90,6 +94,7 @@ const NG_Zorro = [
     AgePipe,
     NotFoundComponent,
     CollectButtonComponent,
+    CollectionFormComponent,
   ]
 })
 export class ShareModule { }

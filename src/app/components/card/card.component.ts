@@ -16,8 +16,10 @@ export class CardComponent implements OnInit {
   @Output('clickEvent') click = new EventEmitter<any>();
 
   constructor() {
+
   }
 
   ngOnInit(): void {
+
   }
 }

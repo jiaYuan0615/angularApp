@@ -6,9 +6,14 @@
       [nzHeader]="v.name"
       [nzExtra]="extra"
     >
-    <p *ngFor="let x of v.sounds">
-      {{x}}
-    </p>
+    <ng-container *ngIf="v.sounds.length ; else none">
+      <ng-container *ngFor="let x of v.sounds">
+        <nz-tag>
+          <div>{{x.name}}</div>
+          <div>{{x.id}}</div>
+        </nz-tag>
+      </ng-container>
+    </ng-container>
     </nz-collapse-panel>
   </nz-collapse>
 </ng-container>
@@ -19,6 +24,10 @@
     nzType="setting"
     (click)="$event.stopPropagation()">
   </i>
+</ng-template>
+
+<ng-template #none>
+  <p>目前尚無收藏歌曲</p>
 </ng-template>
 
 <ng-template #empty>

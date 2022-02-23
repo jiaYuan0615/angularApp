@@ -8,7 +8,8 @@ const postCollection = '[collection] postCollection'
 const postCollectionFail = '[collection] postCollectionFail'
 const postCollectionItem = '[collection] postCollectionItem'
 const postCollectionItemFail = '[collection] postCollectionItemFail'
-
+const deleteCollectionItem = '[collection] deleteCollectionItem'
+const deleteCollectionItemFail = '[collection] deleteCollectionItemFail'
 
 
 export const GetCollectionAction = createAction(
@@ -46,6 +47,16 @@ export const PostCollectionItemAction = createAction(
 
 export const PostCollectionItemFailAction = createAction(
   postCollectionItemFail,
+  props<{ payload: any, callback?: (...args: any) => void }>()
+)
+
+export const DeleteCollectionItemAction = createAction(
+  deleteCollectionItem,
+  props<{ payload: any, callback?: (...args: any) => void }>()
+)
+
+export const DeleteCollectionItemFailAction = createAction(
+  deleteCollectionItemFail,
   props<{ payload: any, callback?: (...args: any) => void }>()
 )
 

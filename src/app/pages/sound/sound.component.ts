@@ -31,21 +31,22 @@ export class SoundComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(fromStore.GetSingerAction());
-    this.store.dispatch(fromStore.GetCollectionAction());
+    this.store.dispatch(fromStore.GetCollectionAction())
     this.store.dispatch(fromStore.GetSoundAction());
+    this.sounds$ = this.store.select(fromStore.getSoundSelector)
+    this.collections$ = this.store.select(fromStore.getCollectionSelector)
     this.singers$ = this.store.select(fromStore.getSingerSelector);
     this.items$ = combineLatest([
       this.store.select(fromStore.getSoundSelector),
       this.store.select(fromStore.getCollectionSelector),
-    ])
-      .pipe(
-        map(([sounds, collection]) => {
-          return {
-            sounds,
-            collection
-          }
-        })
-      )
+    ]).pipe(
+      map(([sounds, collections]) => {
+        return {
+          sounds,
+          collections
+        }
+      }),
+    )
     // const observer = {
     //   next: v => this.sounds = v,
     //   error: e => console.log(e),
@@ -56,7 +57,7 @@ export class SoundComponent implements OnInit {
     this.modalType = type;
     this.modalTitle = title;
     this.isVisible = true;
-    if (!!value) this.sound = value
+    if (value) this.sound = value
   }
 
   callback() {
@@ -87,6 +88,16 @@ export class SoundComponent implements OnInit {
 
   collectItem = (value) => {
     this.store.dispatch(fromStore.PostCollectionItemAction({ payload: value }))
+  }
+
+  // 刪除特定資料夾底下的特定項目
+  deleteItem = (value) => {
+    this.store.dispatch(fromStore.DeleteCollectionItemAction({ payload: value }))
+  }
+
+  collect = (value, callback) => {
+    this.store.dispatch(fromStore.PostCollectionAction({ payload: value }))
+    if (callback) callback()
   }
 
   goToRoute = (path: string[]) => {

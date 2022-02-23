@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { country, countries } from 'src/app/utils/country';
 
@@ -7,7 +7,7 @@ import { country, countries } from 'src/app/utils/country';
   templateUrl: './singer-form.component.html',
   styleUrls: ['./singer-form.component.less']
 })
-export class SingerFormComponent implements OnInit {
+export class SingerFormComponent implements OnInit, OnChanges {
 
   @Input() groups: any;
   @Input() singer: any;
@@ -23,13 +23,18 @@ export class SingerFormComponent implements OnInit {
   constructor(
     private fb: FormBuilder
   ) { }
-
-  ngOnInit(): void {
-    if (this.singer) {
+  ngOnChanges(changes: SimpleChanges): void {
+    if (!!changes.singer) {
+      const currentValue = changes.singer.currentValue;
       const item = {}
       Object.keys(this.singer).map((v) => item[v] = [this.singer[v], [Validators.required]])
+
       this.singerForm = this.fb.group(item)
-    } else {
+    }
+  }
+
+  ngOnInit(): void {
+    if (!this.singer) {
       this.singerForm = this.fb.group({
         name: [null, [Validators.required]],
         biography: [null, [Validators.required]],

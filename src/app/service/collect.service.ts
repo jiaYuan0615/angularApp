@@ -51,4 +51,12 @@ export class CollectService {
       })
     })
   }
+
+  deleteCollectionItem(id: string, itemId: string) {
+    return this.request.delete<any>(`collection/${id}/${itemId}`, {
+      headers: new Headers({
+        Authorization: `bearer ${getToken()}`,
+      })
+    })
+  }
 }

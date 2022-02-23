@@ -21,13 +21,8 @@ export class CollectionEffects {
     ofType(actions.GetCollectionAction),
     switchMap(() => {
       return this.collectService.getCollection().pipe(
-        map(({ collection }) => {
-          return actions.GetCollectionSuccessAction({ payload: collection })
-        }),
-        catchError(({ error }) => {
-          this.message.error(error.message)
-          return of(actions.GoToRouteAction({ payload: { path: ['/auth/login'] } }))
-        })
+        map(({ collection }) => actions.GetCollectionSuccessAction({ payload: collection })),
+        catchError(({ error }) => of(actions.GoToRouteAction({ payload: { path: ['/auth/login'] } })))
       )
     })
   ))
@@ -66,6 +61,22 @@ export class CollectionEffects {
         catchError(({ error }) => {
           this.message.error(error.message)
           return of(actions.PostCollectionItemFailAction({ payload: error.message }))
+        })
+      )
+    })
+  ))
+
+  deleteCollectionItem$ = createEffect(() => this.actions$.pipe(
+    ofType(actions.DeleteCollectionItemAction),
+    switchMap(({ payload }) => {
+      return this.collectService.deleteCollectionItem(payload.id, payload.itemId).pipe(
+        map(({ message }) => {
+          this.message.success(message)
+          return actions.GetCollectionAction()
+        }),
+        catchError(({ error }) => {
+          this.message.error(error.message)
+          return of(actions.DeleteCollectionItemFailAction({ payload: error.message }))
         })
       )
     })

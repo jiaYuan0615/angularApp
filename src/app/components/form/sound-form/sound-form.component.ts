@@ -1,36 +1,40 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as moment from 'moment';
-import { getToken } from 'src/app/utils/authorize';
-import { environment } from 'src/environments/environment';
+import { Sound } from 'src/app/interface/sound';
 
 @Component({
   selector: 'app-sound-form',
   templateUrl: './sound-form.component.html',
-  styleUrls: ['./sound-form.component.less']
+  styleUrls: ['./sound-form.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SoundFormComponent implements OnInit {
+export class SoundFormComponent implements OnInit, OnChanges {
 
   @Input() singers: any
-  @Input() sound: any
+  @Input() sound: Sound
   soundForm: FormGroup
-
   constructor(
     private fb: FormBuilder
   ) { }
 
-  ngOnInit(): void {
-    if (this.sound) {
+  ngOnChanges(changes: SimpleChanges): void {
+    if (!!changes.sound) {
+      const currentValue = changes.sound.currentValue;
       const item = {}
-      Object.keys(this.sound).map((v) => {
+      Object.keys(currentValue).map((v) => {
         if (v === 'isCover') {
-          item[v] = [this.sound[v] ? 'true' : 'false', Validators.required]
+          item[v] = [currentValue[v] ? 'true' : 'false', Validators.required]
         } else {
-          item[v] = [this.sound[v], Validators.required]
+          item[v] = [currentValue[v], Validators.required]
         }
       })
       this.soundForm = this.fb.group(item)
-    } else {
+    }
+  }
+
+  ngOnInit(): void {
+    if (!this.sound) {
       this.soundForm = this.fb.group({
         name: [null, [Validators.required]],
         lyrics: [null, [Validators.required]],
