@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { map } from 'rxjs/operators';
+import { map, takeUntil } from 'rxjs/operators';
 import { NzCalendarMode } from 'ng-zorro-antd/calendar';
-import { interval, Subscription } from 'rxjs';
+import { interval, Subject, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-profile',
@@ -12,6 +12,7 @@ import { interval, Subscription } from 'rxjs';
 export class ProfileComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
   public currentTime: Date = new Date();
+  destroy$ = new Subject();
 
   items = [
     '#這是一個使用來練習的Angular 專案',
@@ -31,11 +32,13 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.route.paramMap.pipe(map(params => params.get('username'))).subscribe(observer)
   }
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    // this.subscription.unsubscribe();
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   ngOnInit(): void {
-    this.subscription = interval(1000).subscribe(x => this.currentTime = new Date());
+    interval(1000).pipe(takeUntil(this.destroy$)).subscribe(x => this.currentTime = new Date());
   }
 
   panelChange(change: { date: Date; mode: string }): void {

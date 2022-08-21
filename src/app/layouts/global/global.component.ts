@@ -1,16 +1,18 @@
-import { AfterViewInit, Component, HostListener, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import * as fromStore from '../../store';
 import { Store } from '@ngrx/store';
-import { Observable, pipe } from 'rxjs';
+import { Observable, fromEvent, Subject } from 'rxjs';
+import { distinctUntilChanged, takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-global',
   templateUrl: './global.component.html',
   styleUrls: ['./global.component.less']
 })
-export class GlobalComponent implements OnInit, AfterViewInit {
+export class GlobalComponent implements OnInit, OnDestroy {
   readonly width: Number = 768;
   memberInfo$: Observable<any>;
+  destroy$ = new Subject();
   isMobile: boolean = false;
   constructor(
     private store: Store<fromStore.State>
@@ -19,15 +21,15 @@ export class GlobalComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.store.dispatch(fromStore.GetMemberAction());
     this.memberInfo$ = this.store.select(fromStore.getMemberSelector);
-  }
 
-  @HostListener('window:resize', ['$event'])
-  ngAfterViewInit(): void {
-    if (window.innerWidth > this.width) {
-      this.isMobile = false;
-    } else {
-      this.isMobile = true;
-    }
+    // 取得視窗改變事件
+    fromEvent(window, 'resize').pipe(
+      distinctUntilChanged(),
+      takeUntil(this.destroy$),
+    ).subscribe((x: any) => {
+      const width = x.target['innerWidth']
+      // this.store.dispatch(fromStore.postWindowSizeAction({ width }))
+    })
   }
 
   logout = () => {
@@ -38,4 +40,10 @@ export class GlobalComponent implements OnInit, AfterViewInit {
     this.store.dispatch(fromStore.GoToRouteAction({ payload: { path } }))
     if (callback) callback()
   }
+
+  ngOnDestroy(): void {
+    this.destroy$.next()
+    this.destroy$.complete()
+  }
+
 }

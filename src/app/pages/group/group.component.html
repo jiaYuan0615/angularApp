@@ -29,9 +29,8 @@
   [(nzVisible)]="isVisible"
   nzTitle={{modalTitle}}
   (nzOnCancel)="handleCancel()"
-  (nzOnOk)="handleOk()"
+  (nzOnOk)="handleOk($event)"
   >
-
   <ng-container *ngIf="modalType === 'create'">
       <app-group-form
         [singers]="singers$ | async"

@@ -54,7 +54,7 @@ export class GroupComponent implements OnInit {
     this.isVisible = false;
   }
 
-  handleOk(): void {
+  handleOk(e: any): void {
     if (this.modalType === 'create') {
       const value = this.gfc.submitForm()
       if (!!value) {
