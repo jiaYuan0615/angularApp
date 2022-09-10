@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { ErrorHandler, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,8 +19,7 @@ import { PaginationComponent } from './components/pagination/pagination.componen
 import { StoreModule } from '@ngrx/store';
 import * as fromStore from './store'
 import { EffectsModule } from '@ngrx/effects';
-import { RouterStateSerializer, StoreRouterConnectingModule } from '@ngrx/router-store';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { RouterStateSerializer } from '@ngrx/router-store';
 import { ResetPasswordFormComponent } from './components/form/reset-password-form/reset-password-form.component';
 import { ErrorLogHandler } from './error-log-handler';
 import { UpdateProfileFormComponent } from './components/form/update-profile-form/update-profile-form.component';

@@ -25,7 +25,7 @@ export class SingerFormComponent implements OnInit, OnChanges {
   ) { }
   ngOnChanges(changes: SimpleChanges): void {
     if (!!changes.singer) {
-      const currentValue = changes.singer.currentValue;
+      const { currentValue } = changes.singer;
       const item = {}
       Object.keys(this.singer).map((v) => item[v] = [this.singer[v], [Validators.required]])
 
