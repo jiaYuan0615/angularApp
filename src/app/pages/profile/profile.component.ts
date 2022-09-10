@@ -1,16 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-<<<<<<< HEAD
 import { ActivatedRoute } from '@angular/router';
 import { map, takeUntil } from 'rxjs/operators';
 import { NzCalendarMode } from 'ng-zorro-antd/calendar';
 import { interval, Observable, Subject, Subscription } from 'rxjs';
 import { Request } from 'src/app/utils/request';
-=======
-import { ActivatedRoute, Router } from '@angular/router';
-import { map, takeUntil } from 'rxjs/operators';
-import { NzCalendarMode } from 'ng-zorro-antd/calendar';
-import { interval, Subject, Subscription } from 'rxjs';
->>>>>>> 531e74ec7fd087a736944f46927997662bc2d669
 
 @Component({
   selector: 'app-profile',
