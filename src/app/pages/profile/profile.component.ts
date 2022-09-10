@@ -1,8 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { map } from 'rxjs/operators';
+import { ActivatedRoute } from '@angular/router';
+import { map, takeUntil } from 'rxjs/operators';
 import { NzCalendarMode } from 'ng-zorro-antd/calendar';
-import { interval, Subscription } from 'rxjs';
+import { interval, Observable, Subject, Subscription } from 'rxjs';
+import { Request } from 'src/app/utils/request';
 
 @Component({
   selector: 'app-profile',
@@ -13,6 +14,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
   public currentTime: Date = new Date();
 
+  subject$ = new Subject();
+
   items = [
     '#這是一個使用來練習的Angular 專案',
     '#後端使用 .NET Core 3.1',
@@ -20,8 +23,11 @@ export class ProfileComponent implements OnInit, OnDestroy {
   ];
   mode: NzCalendarMode = 'month';
 
+  data$: Observable<any>;
+
   constructor(
     private route: ActivatedRoute,
+    private request: Request
   ) {
     const observer = {
       next: (value) => { },
@@ -31,11 +37,17 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.route.paramMap.pipe(map(params => params.get('username'))).subscribe(observer)
   }
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    // this.subscription.unsubscribe();
+    this.subject$.next();
+    this.subject$.complete();
   }
 
   ngOnInit(): void {
-    this.subscription = interval(1000).subscribe(x => this.currentTime = new Date());
+    interval(1000)
+      .pipe(takeUntil(this.subject$))
+      .subscribe(() => this.currentTime = new Date());
+    // this.subscription = interval(1000).subscribe(() => this.currentTime = new Date());
+
   }
 
   panelChange(change: { date: Date; mode: string }): void {

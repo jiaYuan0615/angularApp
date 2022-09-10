@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { HostListener, Injectable } from '@angular/core';
 import * as fromStore from '../store';
 import { Store } from '@ngrx/store';
@@ -10,7 +9,6 @@ import { Store } from '@ngrx/store';
 export class GlobalService {
 
   constructor(
-    private http: HttpClient,
     private store: Store<fromStore.State>,
   ) { }
 

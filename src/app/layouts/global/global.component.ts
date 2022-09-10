@@ -1,7 +1,8 @@
 import { AfterViewInit, Component, HostListener, OnInit } from '@angular/core';
 import * as fromStore from '../../store';
 import { Store } from '@ngrx/store';
-import { Observable, pipe } from 'rxjs';
+import { fromEvent, Observable, pipe } from 'rxjs';
+import { debounceTime, throttleTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-global',

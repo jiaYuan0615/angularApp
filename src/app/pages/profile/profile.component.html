@@ -17,3 +17,5 @@
   (nzSelectChange)="handleSelectDate($event)"
   (nzPanelChange)="panelChange($event)">
 </nz-calendar>
+
+{{data$ | async | json}}

@@ -9,9 +9,7 @@ const { router: api } = environment;
 })
 
 export class Request {
-  constructor(
-    private http: HttpClient
-  ) { }
+  constructor(private http: HttpClient) { }
 
   get<T>(path: string, options?: object) {
     return this.http.get<T>(`${api}${path}`, options)
